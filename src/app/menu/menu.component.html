@@ -1,0 +1,188 @@
+<div class="app-menu navbar-menu" style="background: linear-gradient(45deg, #4b0082, #9400d3);">
+    <!-- LOGO -->
+    <div class="navbar-brand-box">
+        <!-- Light Logo-->
+        <a href="home" class="logo logo-light">
+            <span class="logo-sm">
+                <img src="assets/images/logo-sm.png" alt="" height="22">
+            </span>
+            <span class="logo-lg">
+                <img src="assets/images/logo-remove.png" alt="" style="width: 200px; 
+                height: 120px; padding-right: 8%;">
+            </span>
+        </a>
+        <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
+            <i class="ri-record-circle-line"></i>
+        </button>
+    </div>
+  
+    <div id="scrollbar" data-simplebar="init" class="h-100 simplebar-scrollable-y">
+      <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content">
+        <div class="container-fluid">
+            <ul class="navbar-nav" id="navbar-nav" data-simplebar="init">
+                <li class="nav-item">
+                    <a class="nav-link menu-link collapsed" href="#sidebarDashboards" routerLink="/home">
+                        <i class="ion--home" style="color: white;"></i> <span data-key="t-dashboards" style="color: w;">Dashboard</span>
+                    </a>
+                </li> <!-- end Dashboard Menu -->
+  
+                <li class="nav-item">
+                    <a class="nav-link menu-link collapsed" href="#sidebarAdministrateur" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                        <i class="wpf--administrator"></i> <span data-key="t-apps">Users</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarAdministrateur">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="#sidebarCalendar" class="nav-link collapsed" data-key="t-calender" routerLink="/adduser">
+                                    Ajouter User
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#sidebarCalendar" class="nav-link" data-key="t-chat" routerLink="/listuser">
+                                    Liste Users
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+  
+                <li class="nav-item">
+                    <a class="nav-link menu-link collapsed" href="#sidebarClient" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                        <i class="ic--baseline-people-alt"></i> <span data-key="t-apps">Structure</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarClient">
+                        <ul class="nav nav-sm flex-column">
+                          <li class="nav-item">
+                              <a href="#sidebarCalendar" class="nav-link collapsed" data-key="t-calender" routerLink="/addstructure">
+                                  Ajouter Structure
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                                <a href="#sidebarCalendar" class="nav-link collapsed" data-key="t-calender" routerLink="/liststructure">
+                                    Liste Structures
+                                </a>
+                          </li>
+                        </ul>
+                    </div>
+                </li>
+  
+                <li class="nav-item">
+                    <a class="nav-link menu-link collapsed" href="#sidebarCoachs" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                        <i class="ic--baseline-sports-handball"></i> <span data-key="t-apps">Formateur</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarCoachs">
+                        <ul class="nav nav-sm flex-column">
+                          <li class="nav-item">
+                              <a href="#sidebarCalendar" class="nav-link collapsed" data-key="t-calender" routerLink="/addformateur">
+                                  Ajouter Formateurs
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                                <a href="#sidebarCalendar" class="nav-link collapsed" data-key="t-calender" routerLink="/listformateur">
+                                    Liste Formateurs
+                                </a>
+                          </li>
+                        </ul>
+                    </div>
+                </li>
+  
+                <li class="nav-item">
+                    <a class="nav-link menu-link collapsed" href="#sidebarSalle" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                        <i class="mdi--gym"></i> <span data-key="t-apps">Formation</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarSalle">
+                        <ul class="nav nav-sm flex-column">
+                          <li class="nav-item">
+                              <a href="#sidebarCalendar" class="nav-link collapsed" data-key="t-calender" routerLink="/addformation">
+                                  Ajouter Formation
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                                <a href="#sidebarCalendar" class="nav-link collapsed" data-key="t-calender" routerLink="/listformation">
+                                    Liste Formations
+                                </a>
+                          </li>
+                        </ul>
+                    </div>
+                </li>
+  
+                <li class="nav-item">
+                    <a class="nav-link menu-link collapsed" href="#sidebarAbonnement" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                        <i class="mdi--account-payment"></i> <span data-key="t-apps">Participant</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarAbonnement">
+                        <ul class="nav nav-sm flex-column">
+                          <li class="nav-item">
+                              <a href="#sidebarCalendar" class="nav-link collapsed" data-key="t-calender" routerLink="/addparticipant">
+                                  Ajouter Participant
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                                <a href="#sidebarCalendar" class="nav-link collapsed" data-key="t-calender" routerLink="/listparticipant">
+                                    Liste Participants
+                                </a>
+                          </li>
+                        </ul>
+                    </div>
+                </li>
+  
+                <li class="nav-item">
+                    <a class="nav-link menu-link collapsed" href="#sidebarDomaine" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                        <i class="mdi--account-payment"></i> <span data-key="t-apps">Domaine</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarDomaine">
+                        <ul class="nav nav-sm flex-column">
+                          <li class="nav-item">
+                              <a href="#sidebarCalendar" class="nav-link collapsed" data-key="t-calender" routerLink="/adddomaine">
+                                  Ajouter Domaine
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="#sidebarCalendar" class="nav-link collapsed" data-key="t-calender" routerLink="/listdomaine">
+                                  Liste Domaine
+                              </a>
+                          </li>
+                        </ul>
+                    </div>
+                </li>
+  
+                <li class="nav-item">
+                  <a class="nav-link menu-link collapsed" href="#sidebarRole" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                      <i class="mdi--account-payment"></i> <span data-key="t-apps">Role</span>
+                  </a>
+                  <div class="collapse menu-dropdown" id="sidebarRole">
+                      <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a href="#sidebarCalendar" class="nav-link collapsed" data-key="t-calender" routerLink="/addrole">
+                                Ajouter Role
+                            </a>
+                        </li>
+                          <li class="nav-item">
+                              <a href="#sidebarCalendar" class="nav-link collapsed" data-key="t-calender" routerLink="/listrole">
+                                  Liste Roles
+                              </a>
+                          </li>
+                      </ul>
+                  </div>
+              </li>
+  
+                <li class="nav-item">
+                    <a class="nav-link menu-link collapsed" href="#sidebarContact" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                        <i class="teenyicons--contact-solid"></i> <span data-key="t-apps">Contact</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarContact">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="#sidebarCalendar" class="nav-link collapsed" data-key="t-calender" routerLink="/listcontact">
+                                    Liste Contacts
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  

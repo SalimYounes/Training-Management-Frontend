@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
+
+
+<!-- Mirrored from themesbrand.com/velzon/html/master/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Feb 2024 16:29:56 GMT -->
+<head>
+
+    <meta charset="utf-8" />
+    <title>Dashboard | Velzon - Admin & Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+   
+
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+<app-header></app-header>
+
+<!-- removeNotificationModal -->
+<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="NotificationModalbtn-close"></button>
+            </div>
+           
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+        <!-- ========== App Menu ========== -->
+        <app-menu></app-menu>
+        <div class="vertical-overlay"></div>
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <div class="h-100">
+                                <div class="row mb-3 pb-1">
+                                    <div class="col-12">
+                                        <div class="d-flex align-items-lg-center flex-lg-row flex-column">
+                                            <div class="flex-grow-1">
+                                                <h4 class="fs-16 mb-1">Bonjour, {{userDetails?.nom || ''}} !</h4>
+                                                <p class="text-muted mb-0">Voici ce qui se passe avec votre plateforme de formation aujourd'hui.</p>
+                                            </div>
+                                            <div class="mt-3 mt-lg-0">
+                                                <form action="javascript:void(0);">
+                                                    <div class="row g-3 mb-0 align-items-center">
+                                                        <div class="col-sm-auto">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control border-0 minimal-border dash-filter-picker shadow modern-input" data-provider="flatpickr" data-range-date="true" data-date-format="d M, Y" data-deafult-date="01 Jan 2022 to 31 Jan 2022">
+                                                                <div class="input-group-text border-primary text-white modern-input-addon">
+                                                                    <i class="ri-calendar-2-line"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <div class="row">
+                                    <div class="col-xl-3 col-md-6">
+                                        <!-- card -->
+                                        <div class="card card1 card-animate">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-grow-1 overflow-hidden">
+                                                        <p class="text-uppercase fw-medium" style="color: white;">Utilisateurs</p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex align-items-end justify-content-between mt-4">
+                                                    <div>
+                                                        <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" [attr.data-target]="totalUsers">{{totalUsers}}</span></h4>
+                                                    </div>
+                                                    <div class="avatar-sm flex-shrink-0">
+                                                        <span class="avatar-title rounded fs-3" style="background:#ff8e8e;">
+                                                            <i class="bx bx-user-circle"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="col-xl-3 col-md-6">
+                                        <!-- card -->
+                                        <div class="card card2 card-animate">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-grow-1 overflow-hidden">
+                                                        <p class="text-uppercase fw-medium" style="color: white;">Formations</p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex align-items-end justify-content-between mt-4">
+                                                    <div>
+                                                        <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" [attr.data-target]="totalFormations">{{totalFormations}}</span></h4>
+                                                    </div>
+                                                    <div class="avatar-sm flex-shrink-0">
+                                                        <span class="avatar-title rounded fs-3" style="background-color:#9ee9d79e;">
+                                                            <i class="bx bx-book-open"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="col-xl-3 col-md-6">
+                                        <!-- card -->
+                                        <div class="card card3 card-animate">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-grow-1 overflow-hidden">
+                                                        <p class="text-uppercase fw-medium" style="color: white;">Formateurs</p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex align-items-end justify-content-between mt-4">
+                                                    <div>
+                                                        <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" [attr.data-target]="totalFormateurs">{{totalFormateurs}}</span></h4>
+                                                    </div>
+                                                    <div class="avatar-sm flex-shrink-0">
+                                                        <span class="avatar-title rounded fs-3" style="background-color:#75d1b4ee;">
+                                                            <i class="bx bx-user-voice"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="col-xl-3 col-md-6">
+                                        <!-- card -->
+                                        <div class="card card4 card-animate">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-grow-1 overflow-hidden">
+                                                        <p class="text-uppercase fw-medium" style="color: white;">Participants</p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex align-items-end justify-content-between mt-4">
+                                                    <div>
+                                                        <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" [attr.data-target]="totalParticipants">{{totalParticipants}}</span></h4>
+                                                    </div>
+                                                    <div class="avatar-sm flex-shrink-0">
+                                                        <span class="avatar-title rounded fs-3" style="background-color: #fea78c;">
+                                                            <i class="bx bx-group"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mt-4">
+                                    <div class="col-lg-6">
+                                        <div class="chart-container">
+                                            <canvas id="usersChart" width="350" height="350"></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="chart-container">
+                                            <canvas id="percentageCanvas"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mt-4">
+                                    <div class="col-12">
+                                        <div class="chart-container1">
+                                            <canvas id="topFormationsChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+           <app-footer></app-footer>
+        </div>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+    <!-- JAVASCRIPT -->
+   
+</body>
+
+
+<!-- Mirrored from themesbrand.com/velzon/html/master/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Feb 2024 16:29:56 GMT -->
+</html>

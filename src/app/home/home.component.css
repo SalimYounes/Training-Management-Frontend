@@ -1,0 +1,206 @@
+/* Styling for card containers */
+.card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    transform: perspective(1000px) rotateX(2deg);
+}
+
+/* Hover effect for cards */
+.card:hover {
+    transform: translateY(-5px) perspective(1000px) rotateX(5deg);
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for card titles */
+.card-body p {
+    color: black; /* Text color */
+}
+
+/* Styling for card values */
+.card-body h4 {
+    color: #080808; /* Text color */
+}
+
+/* Styling for counter values */
+.counter-value {
+    color: white; /* Text color */
+    font-weight: bold;
+}
+
+/* Styling for avatar icons */
+.avatar-title {
+    background-color: #f8f9fa; /* Background color */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Rotate icon on hover */
+.card:hover .avatar-title {
+    transform: rotate(360deg);
+}
+
+/* Styling for subtitle */
+.text-muted {
+    color: #020202; /* Text color */
+}
+
+/* Modern gradient background for cards */
+/* Modern gradient background for cards */
+/* Modern gradient background for cards */
+.card1 {
+    background-image: linear-gradient(to top, #ff6b6b, #ff8e8e);
+    background-position: bottom;
+}
+
+.card2 {
+    background-image: linear-gradient(to top, #31c4a1, #43b9c4);
+    background-position: bottom;
+}
+
+.card3 {
+    background-image: linear-gradient(to top, #27b085, #198571);
+    background-position: bottom;
+}
+
+.card4 {
+    background-image: linear-gradient(to top, #ff8a65, #ffb74d);
+    background-position: bottom;
+}
+
+/* Custom styles for the input field and addon */
+.modern-input {
+    border-radius: 10px; /* Adjust border radius as needed */
+    border: 1px solid #ccc; /* Add a border */
+    transition: box-shadow 0.3s ease; /* Add transition for shadow effect */
+}
+
+.modern-input:focus {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a shadow on focus */
+}
+
+.modern-input-addon {
+    background-color: rgb(114, 41, 148);
+    border-radius: 10px; /* Adjust border radius as needed */
+}
+
+
+.chart-container {
+    border: 2px solid #ddd; /* Couleur et largeur du cadre */
+    border-radius: 10px; /* Pour arrondir les coins */
+    padding: 10px; 
+    width: 400px; 
+    height: 400px; 
+    margin: 0 auto; 
+  }
+
+
+
+/* Styling for card containers */
+.card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    transform: perspective(1000px) rotateX(2deg);
+}
+
+/* Hover effect for cards */
+.card:hover {
+    transform: translateY(-5px) perspective(1000px) rotateX(5deg);
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for card titles */
+.card-body p {
+    color: black; /* Text color */
+}
+
+/* Styling for card values */
+.card-body h4 {
+    color: #080808; /* Text color */
+}
+
+/* Styling for counter values */
+.counter-value {
+    color: white; /* Text color */
+    font-weight: bold;
+}
+
+/* Styling for avatar icons */
+.avatar-title {
+    background-color: #f8f9fa; /* Background color */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Rotate icon on hover */
+.card:hover .avatar-title {
+    transform: rotate(360deg);
+}
+
+/* Styling for subtitle */
+.text-muted {
+    color: #020202; /* Text color */
+}
+
+/* Modern gradient background for cards */
+/* Modern gradient background for cards */
+/* Modern gradient background for cards */
+.card1 {
+    background-image: linear-gradient(to top, #ff6b6b, #ff8e8e);
+    background-position: bottom;
+}
+
+.card2 {
+    background-image: linear-gradient(to top, #31c4a1, #43b9c4);
+    background-position: bottom;
+}
+
+.card3 {
+    background-image: linear-gradient(to top, #27b085, #198571);
+    background-position: bottom;
+}
+
+.card4 {
+    background-image: linear-gradient(to top, #ff8a65, #ffb74d);
+    background-position: bottom;
+}
+
+/* Custom styles for the input field and addon */
+.modern-input {
+    border-radius: 10px; /* Adjust border radius as needed */
+    border: 1px solid #ccc; /* Add a border */
+    transition: box-shadow 0.3s ease; /* Add transition for shadow effect */
+}
+
+.modern-input:focus {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a shadow on focus */
+}
+
+.modern-input-addon {
+    background-color: rgb(114, 41, 148);
+    border-radius: 10px; /* Adjust border radius as needed */
+}
+
+
+.chart-container {
+    border: 2px solid #ddd; 
+    border-radius: 10px; 
+    padding: 10px; 
+    width: 400px; 
+    height: 400px; 
+    margin: 0 auto; 
+  }
+  .chart-container1 {
+   
+    border: 2px solid #ddd; 
+    border-radius: 10px; 
+    padding: 10px; 
+    width: 800px; 
+    height: 500px; 
+    margin: 80px auto; 
+  }

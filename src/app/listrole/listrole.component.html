@@ -1,0 +1,127 @@
+
+
+
+<!doctype html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
+
+
+<!-- Mirrored from themesbrand.com/velzon/html/master/tables-datatables.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Feb 2024 16:33:28 GMT -->
+<head>
+
+    <meta charset="utf-8" />
+    <title>Datatables | Velzon - Admin & Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+        <app-header></app-header>
+
+<!-- removeNotificationModal -->
+<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="NotificationModalbtn-close"></button>
+            </div>
+            
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+        <!-- ========== App Menu ========== -->
+        <app-menu></app-menu>
+        <!-- Left Sidebar End -->
+        <!-- Vertical Overlay-->
+        <div class="vertical-overlay"></div>
+<div class="main-content">
+    <div class="page-content">
+      <div class="container-fluid">
+  
+        <!-- start page title -->
+        <div class="row">
+          <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
+              <h4 class="mb-sm-0">Rôle</h4>
+  
+              <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item"><a href="javascript: void(0);" routerLink="/home">Rôle</a></li>
+                  <li class="breadcrumb-item active">Liste rôle</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end page title -->
+  
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title mb-0">Liste Rôle</h5>
+              </div>
+              <div class="card-body">
+                <table class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th scope="col" style="width: 10px;">
+                        <div class="form-check">
+                          <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
+                        </div>
+                      </th>
+                      <th>ID</th>
+                      <th>Nom</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let role of listRole | paginate:{itemsPerPage:10, currentPage:p}">
+                      <th scope="row">
+                        <div class="form-check">
+                          <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                        </div>
+                      </th>
+                      <td>{{ role.id }}</td>
+                      <td>{{ role.nom }}</td>
+                      <td>
+                        <div class="btn-container">
+                          <a [routerLink]="['/modifierrole', role.id]" type="button" class="custom-btn success">Modifier</a>
+                          <button type="button" class="custom-btn danger" (click)="DeleteRole(role)">Supprimer</button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <pagination-controls style="text-align: right;" (pageChange)="p = $event"></pagination-controls>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  
+    <app-footer></app-footer>
+  </div>
+
+
+</div>
+<!-- END layout-wrapper -->
+
+
+
+
+</body>
+
+
+<!-- Mirrored from themesbrand.com/velzon/html/master/tables-datatables.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Feb 2024 16:33:33 GMT -->
+</html>
+  
