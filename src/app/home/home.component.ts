@@ -8,6 +8,7 @@ import { Chart } from 'chart.js/auto';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
   totalUsers: number = 0;
   totalFormations: number = 0;
   totalFormateurs: number = 0;
@@ -15,57 +16,65 @@ export class HomeComponent implements OnInit {
   
   userDetails: any;
   formations: any[] = [];
-  
+
+  // Références aux graphiques pour pouvoir les détruire et recréer proprement
+  usersChart: any;
+  percentageChart: any;
+  topFormationsChart: any;
+
   constructor(private service: CrudserviceService) { 
     this.userDetails = this.service.userDetails();
   }
 
   ngOnInit(): void {
-    // Récupérer les statistiques des utilisateurs
+    this.loadStatistics();
+  }
+
+  // Charger toutes les statistiques
+  loadStatistics() {
     this.service.getUser().subscribe(users => {
       this.totalUsers = users.length;
-      this.updateUserTypeChart();
+      this.updateUserTypeChart(); // Une fois les utilisateurs récupérés
+      this.updatePercentageChart(); // Rafraîchir aussi le camembert
     });
 
-    // Récupérer les statistiques des formations
     this.service.getFormations().subscribe(formations => {
       this.totalFormations = formations.length;
       this.formations = formations;
       this.updateTopFormationsChart();
-    });
-
-    // Récupérer les statistiques des formateurs
-    this.service.getFormateurs().subscribe(formateurs => {
-      this.totalFormateurs = formateurs.length;
       this.updatePercentageChart();
     });
 
-    // Récupérer les statistiques des participants
+    this.service.getFormateurs().subscribe(formateurs => {
+      this.totalFormateurs = formateurs.length;
+      this.updateUserTypeChart();
+    });
+
     this.service.getParticipants().subscribe(participants => {
       this.totalParticipants = participants.length;
+      this.updateUserTypeChart();
       this.updatePercentageChart();
     });
   }
 
-  // Méthode pour mettre à jour le graphique des types d'utilisateurs
   updateUserTypeChart() {
-    const usersChart = new Chart('usersChart', {
+    // Détruire l'ancien graphique avant d'en créer un nouveau
+    if (this.usersChart) {
+      this.usersChart.destroy();
+    }
+
+    this.usersChart = new Chart('usersChart', {
       type: 'doughnut',
       data: {
         labels: ["Formateurs", "Participants", "Autres utilisateurs"],
         datasets: [{
-          label: 'Types d\'utilisateurs',
-          data: [this.totalFormateurs, this.totalParticipants, this.totalUsers - (this.totalFormateurs + this.totalParticipants)],
-          backgroundColor: [
-            '#ff8a65', // Couleur pour les formateurs
-            '#9400d3', // Couleur pour les participants
-            '#4bc0c0'  // Couleur pour les autres utilisateurs
+          data: [
+            this.totalFormateurs,
+            this.totalParticipants,
+            Math.max(this.totalUsers - (this.totalFormateurs + this.totalParticipants), 0)
           ],
-          borderColor: [
-            '#ff8a65',
-            '#9400d3',
-            '#4bc0c0'
-          ],
+          backgroundColor: ['#ff8a65', '#9400d3', '#4bc0c0'],
+          borderColor: ['#ff8a65', '#9400d3', '#4bc0c0'],
           borderWidth: 2
         }]
       },
@@ -74,50 +83,37 @@ export class HomeComponent implements OnInit {
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            position: 'bottom',
-            labels: {
-              font: {
-                family: 'Arial',
-                size: 14
-              }
-            }
+            position: 'bottom'
           },
           title: {
             display: true,
-            text: 'Distribution des utilisateurs',
-            font: {
-              family: 'Arial',
-              size: 18,
-              weight: 'bold'
-            }
-          }
-        },
-        layout: {
-          padding: {
-            left: 20,
-            right: 20,
-            top: 20,
-            bottom: 20
+            text: 'Distribution des utilisateurs'
           }
         }
       }
     });
   }
 
-  // Méthode pour mettre à jour le graphique des pourcentages 
   updatePercentageChart() {
     const totalEntities = this.totalUsers + this.totalFormations + this.totalParticipants;
+
+    if (totalEntities === 0) {
+      return; // éviter division par zéro
+    }
 
     const percentageUsers = (this.totalUsers / totalEntities) * 100;
     const percentageFormations = (this.totalFormations / totalEntities) * 100;
     const percentageParticipants = (this.totalParticipants / totalEntities) * 100;
 
-    const percentageChart = new Chart('percentageCanvas', {
+    if (this.percentageChart) {
+      this.percentageChart.destroy();
+    }
+
+    this.percentageChart = new Chart('percentageCanvas', {
       type: 'pie',
       data: {
         labels: ["Utilisateurs", "Formations", "Participants"],
         datasets: [{
-          label: 'Pourcentage des entités',
           data: [percentageUsers, percentageFormations, percentageParticipants],
           backgroundColor: ['#ff8a65', '#4bc0c0', '#9400d3'],
           borderColor: ['#ff8a65', '#4bc0c0', '#9400d3'],
@@ -129,114 +125,59 @@ export class HomeComponent implements OnInit {
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            position: 'bottom',
-            labels: {
-              font: {
-                family: 'Arial',
-                size: 14
-              }
-            }
+            position: 'bottom'
           },
           title: {
             display: true,
-            text: 'Répartition des entités sur la plateforme',
-            font: {
-              family: 'Arial',
-              size: 18,
-              weight: 'bold'
-            }
-          }
-        },
-        layout: {
-          padding: {
-            left: 20,
-            right: 20,
-            top: 20,
-            bottom: 20
+            text: 'Répartition des entités sur la plateforme'
           }
         }
       }
     });
   }
 
-  // Méthode pour mettre à jour le graphique des formations les plus populaires
   updateTopFormationsChart() {
-    // Exemple: supposons que chaque formation a un nombre de participants
-    // Vous devrez adapter ceci en fonction de la structure réelle de vos données
-    
-    // Simulation: Assignons un nombre aléatoire de participants à chaque formation
-    const formationStats = this.formations.map(formation => {
-      return {
-        nom: formation.titre || 'Formation sans titre',
-        participants: Math.floor(Math.random() * 30) + 1 // Simuler un nombre de participants
-      };
-    });
+    if (this.topFormationsChart) {
+      this.topFormationsChart.destroy();
+    }
 
-    // Trier par nombre de participants
+    const formationStats = this.formations.map(formation => ({
+      nom: formation.titre || 'Formation sans titre',
+      participants: Math.floor(Math.random() * 30) + 1 // ⚡ Simuler pour maintenant
+    }));
+
     const sortedFormations = formationStats.sort((a, b) => b.participants - a.participants);
-    const topFormations = sortedFormations.slice(0, 5); // Prendre les 5 meilleures formations
+    const topFormations = sortedFormations.slice(0, 5);
 
     const labels = topFormations.map(f => f.nom);
     const data = topFormations.map(f => f.participants);
 
-    // Définir un ensemble de couleurs différentes
     const colors = ['#4bc0c0', '#8B65D2', '#36a2eb', '#ffce56', '#9966ff'];
 
-    const barChart = new Chart('topFormationsChart', {
+    this.topFormationsChart = new Chart('topFormationsChart', {
       type: 'bar',
       data: {
         labels: labels,
         datasets: [{
-          label: 'Nombre de participants',
           data: data,
           backgroundColor: colors,
           borderColor: colors,
-          borderWidth: 2
+          borderWidth: 2,
+          label: 'Participants'
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          legend: {
-            display: false
-          },
+          legend: { display: false },
           title: {
             display: true,
-            text: 'Top 5 des formations par nombre de participants',
-            font: {
-              family: 'Arial',
-              size: 18,
-              weight: 'bold'
-            }
+            text: 'Top 5 des formations par participants'
           }
         },
         scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              font: {
-                family: 'Arial',
-                size: 14
-              }
-            }
-          },
-          x: {
-            ticks: {
-              font: {
-                family: 'Arial',
-                size: 14
-              }
-            }
-          }
-        },
-        layout: {
-          padding: {
-            left: 20,
-            right: 20,
-            top: 20,
-            bottom: 20
-          }
+          y: { beginAtZero: true }
         }
       }
     });

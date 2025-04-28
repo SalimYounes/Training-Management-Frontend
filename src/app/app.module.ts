@@ -35,6 +35,7 @@ import { ListParticipantComponent } from './list-participant/list-participant.co
 import { AddProfilComponent } from './add-profil/add-profil.component';
 import { ListProfilComponent } from './list-profil/list-profil.component';
 import { AddFormateurComponent } from './add-formateur/add-formateur.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { AddFormateurComponent } from './add-formateur/add-formateur.component';
     AddProfilComponent,
     ListProfilComponent,
     AddFormateurComponent,
+    AuthComponent,
     
   ],
   imports: [

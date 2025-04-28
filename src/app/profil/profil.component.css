@@ -1,0 +1,50 @@
+.a {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 320px
+}
+
+@media (max-width: 575.98px) {
+    .a {
+        height:445px
+    }
+}
+
+.a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: .9;
+    background: linear-gradient(45deg, #570195f1, #9400d3c6);
+    background: linear-gradient(to top,)
+}
+
+.a .a-img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover
+}
+
+.btn-success {
+    background-color: #28a745; 
+    color: #fff; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    text-decoration: none; 
+    display: inline-block; /* Affichage en ligne */
+    transition: background-color 0.3s ease; 
+}
+
+.btn-success:hover {
+    background-color: #218838; 
+}
+
+.btn-success i {
+    margin-right: 5px; 
+}

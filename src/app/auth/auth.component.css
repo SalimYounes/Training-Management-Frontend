@@ -1,0 +1,165 @@
+/* Style for the input element with 3D effect */
+input {
+    padding: 12px; /* Adds padding inside the input */
+    border: 2px solid #ddd; /* Adds a border around the input */
+    border-radius: 8px; /* Rounds the corners of the input */
+    font-size: 18px; /* Sets the font size */
+    color: #333; /* Sets the text color */
+    background-color: #f9f9f9; /* Sets the background color */
+    transition: border-color 0.3s ease; /* Adds smooth transition for border color */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Adds shadow to give a 3D effect */
+  }
+  
+  /* Style for when the input is focused */
+  input:focus {
+    border-color: #007bff; /* Changes the border color when focused */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5), 0 2px 12px rgba(0, 0, 0, 0.1); /* Adds a stronger shadow when focused */
+    transform: translateY(-1px); /* Lifts the input element slightly on focus */
+  }
+  
+  
+  
+  /* Hover effect */
+  input:hover {
+    border-color: #999; /* Changes the border color on hover */
+  }
+  
+  /* Disabled style */
+  input:disabled {
+    opacity: 0.6; /* Reduces opacity for disabled input */
+    cursor: not-allowed; /* Changes cursor to not-allowed for disabled input */
+  }
+
+  /* Style for the input element with 3D effect */
+select {
+    padding: 12px; /* Adds padding inside the input */
+    border: 2px solid #ddd; /* Adds a border around the input */
+    border-radius: 8px; /* Rounds the corners of the input */
+    font-size: 18px; /* Sets the font size */
+    color: #333; /* Sets the text color */
+    background-color: #f9f9f9; /* Sets the background color */
+    transition: border-color 0.3s ease; /* Adds smooth transition for border color */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Adds shadow to give a 3D effect */
+  }
+  
+  /* Style for when the input is focused */
+  select:focus {
+    border-color: #007bff; /* Changes the border color when focused */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5), 0 2px 12px rgba(0, 0, 0, 0.1); /* Adds a stronger shadow when focused */
+    transform: translateY(-1px); /* Lifts the input element slightly on focus */
+  }
+  
+  /* Placeholder style */
+  select::placeholder {
+    color: #999; /* Sets the placeholder text color */
+  }
+  
+  /* Hover effect */
+  select:hover {
+    border-color: #999; /* Changes the border color on hover */
+  }
+  
+  /* Disabled style */
+  select:disabled {
+    opacity: 0.6; /* Reduces opacity for disabled input */
+    cursor: not-allowed; /* Changes cursor to not-allowed for disabled input */
+  }
+
+  /* Style for the button */
+button {
+    padding: 12px 20px; /* Adds padding inside the button */
+    border: none; /* Removes the border */
+    border-radius: 20px; /* Rounds the corners of the button */
+    font-size: 18px; /* Sets the font size */
+    color: #fff; /* Sets the text color */
+    cursor: pointer; /* Changes cursor to pointer */
+    transition: background-color 0.3s ease; /* Adds smooth transition for background color */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Adds shadow to give a 3D effect */
+  }
+  
+  /* Hover effect */
+  button:hover {
+    background-color: #25762a; /* Changes the background color on hover */
+  }
+  
+  /* Active effect */
+  button:active {
+    background-color:#257028;  /* Changes the background color on click */
+    transform: translateY(1px); /* Pushes the button down slightly on click */
+  }
+  
+  /* Disabled style */
+  button:disabled {
+    opacity: 0.6; /* Reduces opacity for disabled button */
+    cursor: not-allowed; /* Changes cursor to not-allowed for disabled button */
+  }
+
+
+
+
+  .auth-bg-cover {
+    background: linear-gradient(-45deg,#59238b 50%,#61059274)
+}
+
+.auth-bg-cover>.bg-overlay {
+    background-position: center;
+    background-size: cover;
+    opacity: 1;
+    background-color: transparent
+}
+
+.auth-bg-cover .footer {
+    color: rgba(255,255,255,.5)
+}
+
+.auth-page-wrapper .auth-page-content {
+  padding-bottom: 60px;
+  position: relative;
+  z-index: 2;
+  width: 100%
+}
+
+.auth-page-wrapper .footer {
+  left: 0;
+  background-color: transparent;
+  color: var(--vz-body-color)
+}
+
+.auth-one-bg-position {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 380px
+}
+
+@media (max-width: 575.98px) {
+  .auth-one-bg-position {
+      height:280px
+  }
+}
+
+.auth-one-bg {
+  background-position: center;
+  background-size: cover
+}
+
+.auth-one-bg .bg-overlay {
+  background: linear-gradient(to right,#5c408e,#5b3b91);
+  opacity: .8
+}
+
+.text-success {
+  --vz-text-opacity: 1;
+  color: rgb(40 158 92) !important;
+}
+
+.btn-success {
+  --vz-btn-bg: #2c9333;
+}
+
+  
+  
+  
+  

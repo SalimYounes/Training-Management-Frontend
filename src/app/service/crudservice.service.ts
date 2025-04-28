@@ -18,10 +18,23 @@ import { Domaine } from '../Entité/Domaine.module';
 })
 export class CrudserviceService {
   apiUrl = "http://localhost:8080";
-  loginUserUrl = "http://localhost:8081/api/admin/login";
   helper = new JwtHelperService();
 
   constructor(private http: HttpClient) { }
+
+
+
+  login(data: { email: string; password: string }): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/auth/login`, data);
+  }
+
+  isLoggedIn(): boolean {
+    const token = localStorage.getItem("myToken");
+    return token ? true : false;
+  }
+
+  
+  
 
   // User
   addUser(user: User): Observable<any> {
@@ -157,20 +170,31 @@ export class CrudserviceService {
   }
   
   // Authentication
-  loginUser(user: User): Observable<any> {
-    return this.http.post<any>(this.loginUserUrl, user);
-  }
-
+ 
   userDetails(): any {
     const token: any = localStorage.getItem('myToken');
     const decodeToken = this.helper.decodeToken(token);
-    return decodeToken?.data;
+    
+    // Si le token contient les données utilisateur, les retourner
+    if (decodeToken?.data) {
+      return decodeToken.data;
+    }
+    
+    // Sinon, construire un objet avec les données du localStorage
+    return {
+      email: decodeToken?.sub, // L'email est souvent dans le 'sub' du JWT
+      nom: localStorage.getItem('nom'),
+      prenom: localStorage.getItem('prenom'),
+      id: decodeToken?.id // Si l'ID est disponible dans le token
+    };
   }
 
-  isLoggedIn(): boolean {
-    const token = localStorage.getItem("myToken");
-    return token ? true : false;
+  
+  logoutFromServer(): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/auth/logout`, {});
   }
+  
+  
 
   validateEmail(email: string): boolean {
     const regex: RegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

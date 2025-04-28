@@ -20,13 +20,15 @@
       <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content">
         <div class="container-fluid">
             <ul class="navbar-nav" id="navbar-nav" data-simplebar="init">
-                <li class="nav-item">
+                <!-- Dashboard - Visible pour Administrateurs et Responsable uniquement -->
+                <li class="nav-item" *ngIf="hasRole('Administrateur') || hasRole('Responsable')">
                     <a class="nav-link menu-link collapsed" href="#sidebarDashboards" routerLink="/home">
                         <i class="ion--home" style="color: white;"></i> <span data-key="t-dashboards" style="color: w;">Dashboard</span>
                     </a>
                 </li> <!-- end Dashboard Menu -->
   
-                <li class="nav-item">
+                <!-- User Management - Visible pour Administrateurs uniquement -->
+                <li class="nav-item" *ngIf="hasRole('Administrateur')">
                     <a class="nav-link menu-link collapsed" href="#sidebarAdministrateur" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
                         <i class="wpf--administrator"></i> <span data-key="t-apps">Users</span>
                     </a>
@@ -46,7 +48,8 @@
                     </div>
                 </li>
   
-                <li class="nav-item">
+                <!-- Structure - Visible pour Administrateurs uniquement -->
+                <li class="nav-item" *ngIf="hasRole('Administrateur')">
                     <a class="nav-link menu-link collapsed" href="#sidebarClient" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
                         <i class="ic--baseline-people-alt"></i> <span data-key="t-apps">Structure</span>
                     </a>
@@ -66,13 +69,14 @@
                     </div>
                 </li>
   
-                <li class="nav-item">
+                <!-- Formateur - Visible pour Administrateurs et Utilisateur simple -->
+                <li class="nav-item" *ngIf="hasRole('Administrateur') || isSimpleUser()">
                     <a class="nav-link menu-link collapsed" href="#sidebarCoachs" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
                         <i class="ic--baseline-sports-handball"></i> <span data-key="t-apps">Formateur</span>
                     </a>
                     <div class="collapse menu-dropdown" id="sidebarCoachs">
                         <ul class="nav nav-sm flex-column">
-                          <li class="nav-item">
+                          <li class="nav-item" *ngIf="hasRole('Administrateur')">
                               <a href="#sidebarCalendar" class="nav-link collapsed" data-key="t-calender" routerLink="/addformateur">
                                   Ajouter Formateurs
                               </a>
@@ -86,13 +90,14 @@
                     </div>
                 </li>
   
-                <li class="nav-item">
+                <!-- Formation - Visible pour Administrateurs et Utilisateur simple -->
+                <li class="nav-item" *ngIf="hasRole('Administrateur') || isSimpleUser()">
                     <a class="nav-link menu-link collapsed" href="#sidebarSalle" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
                         <i class="mdi--gym"></i> <span data-key="t-apps">Formation</span>
                     </a>
                     <div class="collapse menu-dropdown" id="sidebarSalle">
                         <ul class="nav nav-sm flex-column">
-                          <li class="nav-item">
+                          <li class="nav-item" *ngIf="hasRole('Administrateur')">
                               <a href="#sidebarCalendar" class="nav-link collapsed" data-key="t-calender" routerLink="/addformation">
                                   Ajouter Formation
                               </a>
@@ -106,7 +111,8 @@
                     </div>
                 </li>
   
-                <li class="nav-item">
+                <!-- Sections suivantes visibles uniquement pour Administrateurs -->
+                <li class="nav-item" *ngIf="hasRole('Administrateur')">
                     <a class="nav-link menu-link collapsed" href="#sidebarAbonnement" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
                         <i class="mdi--account-payment"></i> <span data-key="t-apps">Participant</span>
                     </a>
@@ -126,7 +132,7 @@
                     </div>
                 </li>
   
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="hasRole('Administrateur')">
                     <a class="nav-link menu-link collapsed" href="#sidebarDomaine" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
                         <i class="mdi--account-payment"></i> <span data-key="t-apps">Domaine</span>
                     </a>
@@ -146,7 +152,7 @@
                     </div>
                 </li>
   
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="hasRole('Administrateur')">
                   <a class="nav-link menu-link collapsed" href="#sidebarRole" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
                       <i class="mdi--account-payment"></i> <span data-key="t-apps">Role</span>
                   </a>
@@ -166,7 +172,7 @@
                   </div>
               </li>
   
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="hasRole('Administrateur')">
                     <a class="nav-link menu-link collapsed" href="#sidebarContact" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
                         <i class="teenyicons--contact-solid"></i> <span data-key="t-apps">Contact</span>
                     </a>
@@ -184,5 +190,4 @@
         </div>
       </div>
     </div>
-  </div>
-  
+</div>

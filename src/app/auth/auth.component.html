@@ -1,0 +1,128 @@
+        <!doctype html>
+        <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
+
+        <head>
+            <meta charset="utf-8" />
+            <title>Connexion | SantéSynchro</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta content="SantéSynchro - Application de gestion" name="description" />
+            <meta content="Vibracom Agency" name="author" />
+        </head>
+
+        <body>
+
+            <div class="auth-page-wrapper auth-bg-cover py-5 d-flex justify-content-center align-items-center min-vh-100">
+                <div class="bg-overlay"></div>
+
+                <div class="auth-page-content overflow-hidden pt-lg-5">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card overflow-hidden card-bg-fill galaxy-border-none" style="box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);">
+                                    <div class="row g-0">
+                                        <div class="col-lg-6">
+                                            <div class="p-lg-5 p-4 auth-one-bg h-100" style="background-image: url('assets/images/salledesport.jpg');">
+                                                <div class="bg-overlay"></div>
+                                                <div class="position-relative h-100 d-flex flex-column">
+                                                    <div class="mb-4">
+                                                        <a href="index.html" class="d-block">
+                                                        </a>
+                                                    </div>
+                                                    <div class="mt-auto">
+                                                        <div class="mb-3">
+                                                            <i class="ri-double-quotes-l display-4 text-success"></i>
+                                                        </div>
+
+                                                        <div id="quotesCarousel" class="carousel slide" data-bs-ride="carousel">
+                                                            <div class="carousel-indicators">
+                                                                <button type="button" data-bs-target="#quotesCarousel" data-bs-slide-to="0" class="active"></button>
+                                                                <button type="button" data-bs-target="#quotesCarousel" data-bs-slide-to="1"></button>
+                                                                <button type="button" data-bs-target="#quotesCarousel" data-bs-slide-to="2"></button>
+                                                            </div>
+                                                            <div class="carousel-inner text-center text-white-50 pb-5">
+                                                                <div class="carousel-item active">
+                                                                    <p class="fs-15 fst-italic">"Les administrateurs peuvent suivre les nouveaux contenus ajoutés au site."</p>
+                                                                </div>
+                                                                <div class="carousel-item">
+                                                                    <p class="fs-15 fst-italic">"Le panneau d'administration accorde un contrôle total sur les clients et les coachs."</p>
+                                                                </div>
+                                                                <div class="carousel-item">
+                                                                    <p class="fs-15 fst-italic">"Supervisez les clients, les salles de sport et les coachs via le tableau de bord."</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end carousel -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="p-lg-5 p-4">
+                                                <div>
+                                                    <h5 class="text-primary">Bienvenue !</h5>
+                                                    <p class="text-muted">Connectez-vous pour continuer sur SantéSynchro.</p>
+                                                </div>
+
+                                                <div class="mt-4">
+                                                    <!-- Angular form -->
+                                                    <form (ngSubmit)="login()" [formGroup]="loginForm">
+                                                        <div class="mb-3">
+                                                          <label for="email" class="form-label">Email</label>
+                                                          <input type="email" class="form-control" id="email" placeholder="Entrer votre Email" formControlName="email">
+                                                        </div>
+                                                      
+                                                        <div class="mb-3">
+                                                          <label for="password" class="form-label">Mot de Passe</label>
+                                                          <div class="position-relative auth-pass-inputgroup mb-3">
+                                                            <input type="password" class="form-control pe-5" id="password" placeholder="Entrer votre Mot de Passe" formControlName="mp">
+                                                          </div>
+                                                        </div>
+                                                      
+                                                        <div class="mt-4">
+                                                          <button class="btn btn-success w-100" type="submit">Connexion</button>
+                                                        </div>
+                                                      </form>
+                                                      
+                                                </div>
+
+                                                <br>
+
+                                            </div>
+                                        </div>
+                                        <!-- end col -->
+                                    </div>
+                                    <!-- end row -->
+                                </div>
+                                <!-- end card -->
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </div>
+                    <!-- end container -->
+                </div>
+                <!-- end auth page content -->
+
+                <!-- Footer -->
+                <div class="text-center" style="position: absolute; bottom: 40px; color: rgb(213, 210, 210);">
+                    {{ currentYear }} © SantéSynchro.
+                </div>
+                <footer class="footer galaxy-border-none">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="text-center" style="color: rgb(213, 210, 210);">
+                                    Développé avec <i class="mdi mdi-heart text-danger"></i> par Vibracom Agency
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- end Footer -->
+            </div>
+            <!-- end auth-page-wrapper -->
+
+        </body>
+
+        </html>

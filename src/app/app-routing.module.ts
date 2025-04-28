@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 // Importation des composants
 import { HomeComponent } from './home/home.component';
 import { AdduserComponent } from './adduser/adduser.component';
@@ -21,50 +20,46 @@ import { AddDomaineComponent } from './add-domaine/add-domaine.component';
 import { ListDomaineComponent } from './list-domaine/list-domaine.component';
 import { AddRoleComponent } from './add-role/add-role.component';
 import { ListroleComponent } from './listrole/listrole.component';
+import { AuthComponent } from './auth/auth.component';
+import { ProfilComponent } from './profil/profil.component';
+import { AuthGuard } from './guards/auth.guards';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },  // Redirige vers /home par défaut
-  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
 
-  // Routes pour User
-  { path: 'adduser', component: AdduserComponent },
-  { path: 'listuser', component: ListuserComponent },
+  { path: 'adduser', component: AdduserComponent, canActivate: [AuthGuard] },
+  { path: 'listuser', component: ListuserComponent, canActivate: [AuthGuard] },
 
-  // Routes pour Employeur
-  { path: 'addemployeur', component: AddEmployeurComponent },
-  { path: 'listemployeur', component: ListEmployeurComponent },
+  { path: 'addemployeur', component: AddEmployeurComponent, canActivate: [AuthGuard] },
+  { path: 'listemployeur', component: ListEmployeurComponent, canActivate: [AuthGuard] },
 
-  // Routes pour Formateur
-  { path: 'addformateur', component: AddFormateurComponent },
-  { path: 'listformateur', component: ListFormateurComponent },
+  { path: 'addformateur', component: AddFormateurComponent, canActivate: [AuthGuard] },
+  { path: 'listformateur', component: ListFormateurComponent, canActivate: [AuthGuard] },
 
-  // Routes pour Formation
-  { path: 'addformation', component: AddFormationComponent },
-  { path: 'listformation', component: ListFormationComponent },
+  { path: 'addformation', component: AddFormationComponent, canActivate: [AuthGuard] },
+  { path: 'listformation', component: ListFormationComponent, canActivate: [AuthGuard] },
 
-  // Routes pour Participant
-  { path: 'addparticipant', component: AddParticipantComponent },
-  { path: 'listparticipant', component: ListParticipantComponent },
+  { path: 'addparticipant', component: AddParticipantComponent, canActivate: [AuthGuard] },
+  { path: 'listparticipant', component: ListParticipantComponent, canActivate: [AuthGuard] },
 
-  // Routes pour Structure
-  { path: 'addstructure', component: AddStructureComponent },
-  { path: 'liststructure', component: ListStructureComponent },
+  { path: 'addstructure', component: AddStructureComponent, canActivate: [AuthGuard] },
+  { path: 'liststructure', component: ListStructureComponent, canActivate: [AuthGuard] },
 
-  // Routes pour Profil
-  { path: 'addprofil', component: AddProfilComponent },
-  { path: 'listprofil', component: ListProfilComponent },
+  { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },
 
-    // Routes pour Domaine
-    { path: 'adddomaine', component: AddDomaineComponent },
-    { path: 'listdomaine', component: ListDomaineComponent },
+  { path: 'adddomaine', component: AddDomaineComponent, canActivate: [AuthGuard] },
+  { path: 'listdomaine', component: ListDomaineComponent, canActivate: [AuthGuard] },
 
-       // Routes pour Domaine
-       { path: 'addrole', component: AddRoleComponent },
-       { path: 'listrole', component: ListroleComponent },
+  { path: 'addrole', component: AddRoleComponent, canActivate: [AuthGuard] },
+  { path: 'listrole', component: ListroleComponent, canActivate: [AuthGuard] },
+
+  { path: 'login', component: AuthComponent }, // 🛑 PAS de AuthGuard ici
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { } 
