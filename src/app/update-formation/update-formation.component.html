@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
+
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>Basic Elements | Velzon - Admin & Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+
+
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+    <app-header></app-header>
+
+<!-- removeNotificationModal -->
+<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="NotificationModalbtn-close"></button>
+            </div>
+         
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+        <!-- ========== App Menu ========== -->
+       <app-menu></app-menu>
+        
+        <div class="vertical-overlay"></div>
+
+        
+        <div class="main-content">
+          <div class="page-content">
+            <div class="container-fluid">
+    
+              <div class="row">
+                <div class="col-12">
+                  <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
+                    <h4 class="mb-sm-0">Formation</h4>
+                    <div class="page-title-right">
+                      <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a routerLink="/listformation">Formations</a></li>
+                        <li class="breadcrumb-item active">Modifier Formation</li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+              <!-- Formulaire de mise à jour -->
+              <div class="row justify-content-center align-items-center">
+                <div class="col-lg-9">
+                  <div class="card">
+                    <div class="card-header align-items-center d-flex" style="background-color: #6D81F2;">
+                      <h4 class="card-title mb-0 flex-grow-1" style="color: white;">
+                        Modifier Formation
+                      </h4>
+                    </div>
+    
+                    <div class="card-body">
+                      <div class="live-preview">
+                        <form (ngSubmit)="updateFormation()" [formGroup]="updateForm">
+                          <div class="row gy-4 justify-content-center align-items-center">
+    
+                            <!-- Titre -->
+                            <div class="col-xxl-8 col-md-6">
+                              <div>
+                                <label for="titre" class="form-label">Titre</label>
+                                <input type="text" class="form-control" id="titre" placeholder="Titre" formControlName="titre"
+                                  [ngClass]="{'invalid-input': titre?.invalid && (titre?.dirty || titre?.touched)}">
+                                <div *ngIf="titre?.touched && titre?.invalid">
+                                  <small class="text-danger" *ngIf="titre?.errors?.['required']">Titre est obligatoire</small>
+                                </div>
+                              </div>
+                            </div>
+    
+                            <!-- Année -->
+                            <div class="col-xxl-8 col-md-6">
+                              <div>
+                                <label for="annee" class="form-label">Année</label>
+                                <input type="number" class="form-control" id="annee" placeholder="Année" formControlName="annee"
+                                  [ngClass]="{'invalid-input': annee?.invalid && (annee?.dirty || annee?.touched)}">
+                                <div *ngIf="annee?.touched && annee?.invalid">
+                                  <small class="text-danger" *ngIf="annee?.errors?.['required']">Année est obligatoire</small>
+                                </div>
+                              </div>
+                            </div>
+    
+                            <!-- Durée -->
+                            <div class="col-xxl-8 col-md-6">
+                              <div>
+                                <label for="duree" class="form-label">Durée (jours)</label>
+                                <input type="number" class="form-control" id="duree" placeholder="Durée" formControlName="duree"
+                                  [ngClass]="{'invalid-input': duree?.invalid && (duree?.dirty || duree?.touched)}">
+                                <div *ngIf="duree?.touched && duree?.invalid">
+                                  <small class="text-danger" *ngIf="duree?.errors?.['required']">Durée est obligatoire</small>
+                                </div>
+                              </div>
+                            </div>
+    
+                            <!-- Budget -->
+                            <div class="col-xxl-8 col-md-6">
+                              <div>
+                                <label for="budget" class="form-label">Budget (€)</label>
+                                <input type="number" class="form-control" id="budget" placeholder="Budget" formControlName="budget"
+                                  [ngClass]="{'invalid-input': budget?.invalid && (budget?.dirty || budget?.touched)}">
+                                <div *ngIf="budget?.touched && budget?.invalid">
+                                  <small class="text-danger" *ngIf="budget?.errors?.['required']">Budget est obligatoire</small>
+                                </div>
+                              </div>
+                            </div>
+    
+                            <!-- Domaine -->
+                            <div class="col-xxl-8 col-md-6">
+                              <div>
+                                <label for="domaine" class="form-label">Domaine</label>
+                                <select class="form-control" id="domaine" formControlName="domaine"
+                                  [ngClass]="{'invalid-input': domaine?.invalid && (domaine?.dirty || domaine?.touched)}">
+                                  <option value="">-- Sélectionner un domaine --</option>
+                                  <option *ngFor="let dom of domaines" [value]="dom.id">
+                                    {{ dom.libelle }}
+                                  </option>
+                                </select>
+                                <div *ngIf="domaine?.touched && domaine?.invalid">
+                                  <small class="text-danger" *ngIf="domaine?.errors?.['required']">Domaine est obligatoire</small>
+                                </div>
+                              </div>
+                            </div>
+    
+                            <!-- Formateur -->
+                            <div class="col-xxl-8 col-md-6">
+                              <div>
+                                <label for="formateur" class="form-label">Formateur</label>
+                                <select class="form-control" id="formateur" formControlName="formateur"
+                                  [ngClass]="{'invalid-input': formateur?.invalid && (formateur?.dirty || formateur?.touched)}">
+                                  <option value="">-- Sélectionner un formateur --</option>
+                                  <option *ngFor="let f of formateurs" [value]="f.id">
+                                    {{ f.nom }} {{ f.prenom }}
+                                  </option>
+                                </select>
+                                <div *ngIf="formateur?.touched && formateur?.invalid">
+                                  <small class="text-danger" *ngIf="formateur?.errors?.['required']">Formateur est obligatoire</small>
+                                </div>
+                              </div>
+                            </div>
+    
+                            <!-- Bouton Modifier -->
+                            <div class="col-12 d-flex justify-content-center">
+                              <button class="btn btn-primary" type="submit">Modifier</button>
+                            </div>
+    
+                          </div>
+                        </form>
+                      </div>
+    
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end row -->
+    
+            </div> <!-- container-fluid -->
+          </div> <!-- End Page-content -->
+    
+          <app-footer></app-footer>
+        </div> <!-- End main content -->
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+   
+
+    <!-- Theme Settings -->
+   
+
+    <!-- JAVASCRIPT -->
+   
+
+</body>
+
+
+</html>

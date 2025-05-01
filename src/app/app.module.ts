@@ -31,14 +31,23 @@ import { AddEmployeurComponent } from './add-employeur/add-employeur.component';
 import { ListStructureComponent } from './list-structure/list-structure.component';
 import { AddStructureComponent } from './add-structure/add-structure.component';
 import { AddParticipantComponent } from './add-participant/add-participant.component';
-import { ListParticipantComponent } from './list-participant/list-participant.component';
 import { AddProfilComponent } from './add-profil/add-profil.component';
 import { ListProfilComponent } from './list-profil/list-profil.component';
 import { AddFormateurComponent } from './add-formateur/add-formateur.component';
+
 import { AuthComponent } from './auth/auth.component';
 import { RegistreComponent } from './registre/registre.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
+
+import { ListParticipantComponent } from './list-participant/list-participant.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { UpdateStructureComponent } from './update-structure/update-structure.component';
+import { UpdateFormateurComponent } from './update-formateur/update-formateur.component';
+import { UpdateFormationComponent } from './update-formation/update-formation.component';
+import { UpdateParticipantComponent } from './update-participant/update-participant.component';
+import { UpdateDomaineComponent } from './update-domaine/update-domaine.component';
+import { UpdateRoleComponent } from './update-role/update-role.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +76,13 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     AddFormateurComponent,
     AuthComponent,
     RegistreComponent,
+    UpdateUserComponent,
+    UpdateStructureComponent,
+    UpdateFormateurComponent,
+    UpdateFormationComponent,
+    UpdateParticipantComponent,
+    UpdateDomaineComponent,
+    UpdateRoleComponent,
     
   ],
   imports: [

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
+
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>Basic Elements | Velzon - Admin & Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+
+
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+    <app-header></app-header>
+
+<!-- removeNotificationModal -->
+<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="NotificationModalbtn-close"></button>
+            </div>
+         
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+        <!-- ========== App Menu ========== -->
+       <app-menu></app-menu>
+        
+        <div class="vertical-overlay"></div>
+
+        
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                   
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
+                                <h4 class="mb-sm-0">Administrateur</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);" routerLink="">Administrateur</a></li>
+                                        <li class="breadcrumb-item active">Modifier Admin</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+                    <div class="row justify-content-center align-items-center"  >
+                     
+                        <div class="col-lg-9" >
+                            <div class="card ">
+                                <div class="card-header align-items-center d-flex" style="background-color:#6D81F2;">
+                                    <h4 class="card-title mb-0 flex-grow-1" style="color: white;">
+                                        Modifier Admin
+                                       
+                                    </h4>
+                                </div>
+                                 
+                                
+                                <!-- end card header -->
+                                <div class="card-body">
+                                    <div class="live-preview">
+                                        <form (ngSubmit)="updateUser()" [formGroup]="updateForm">
+                                            <div class="row gy-4 justify-content-center align-items-center">
+                                        
+                                                <div class="col-xxl-8 col-md-6">
+                                                    <div>
+                                                        <label for="nom" class="form-label">Nom</label>
+                                                        <input type="text" class="form-control" id="nom" placeholder="Nom" formControlName="nom"
+                                                            [ngClass]="{'invalid-input': nom?.invalid && (nom?.dirty || nom?.touched)}">
+                                                        <div *ngIf="nom?.touched && nom?.invalid">
+                                                            <small class="text-danger" *ngIf="nom?.errors?.['required']">Nom est obligatoire</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        
+                                                <div class="col-xxl-8 col-md-6">
+                                                    <div>
+                                                        <label for="prenom" class="form-label">Prénom</label>
+                                                        <input type="text" class="form-control" id="prenom" placeholder="Prénom" formControlName="prenom"
+                                                            [ngClass]="{'invalid-input': prenom?.invalid && (prenom?.dirty || prenom?.touched)}">
+                                                        <div *ngIf="prenom?.touched && prenom?.invalid">
+                                                            <small class="text-danger" *ngIf="prenom?.errors?.['required']">Prénom est obligatoire</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        
+                                                <div class="col-xxl-8 col-md-6">
+                                                    <div>
+                                                        <label for="email" class="form-label">Email</label>
+                                                        <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email"
+                                                            [ngClass]="{'invalid-input': email?.invalid && (email?.dirty || email?.touched)}">
+                                                        <div *ngIf="email?.touched && email?.invalid">
+                                                            <small class="text-danger" *ngIf="email?.errors?.['required']">Email est obligatoire</small>
+                                                            <small class="text-danger" *ngIf="email?.errors?.['pattern'] || email?.errors?.['email']">Format d'email incorrect</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        
+                                                <div class="col-xxl-8 col-md-6">
+                                                    <div>
+                                                        <label for="password" class="form-label">Mot de passe</label>
+                                                        <input type="password" class="form-control" id="password" placeholder="Mot de passe" formControlName="password"
+                                                            [ngClass]="{'invalid-input': password?.invalid && (password?.dirty || password?.touched)}">
+                                                        <div *ngIf="password?.touched && password?.invalid">
+                                                            <small class="text-danger" *ngIf="password?.errors?.['required']">Mot de passe est obligatoire</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        
+                                                <!-- Ajout du champ role -->
+<div class="col-xxl-8 col-md-6">
+    <div>
+      <label for="role" class="form-label">Rôle</label>
+      <select class="form-control" id="role" formControlName="role"
+        [ngClass]="{'invalid-input': role?.invalid && (role?.dirty || role?.touched)}">
+        <option value="">-- Sélectionner un rôle --</option>
+        <option *ngFor="let roleOption of roles" [value]="roleOption.value">
+          {{ roleOption.nom }}
+        </option>
+      </select>
+      <div *ngIf="role?.touched && role?.invalid">
+        <small class="text-danger" *ngIf="role?.errors?.['required']">Rôle est obligatoire</small>
+      </div>
+    </div>
+  </div>
+                                        
+                                                <div class="col-12 d-flex justify-content-center">
+                                                    <button class="btn btn-primary" type="submit">Modifier</button>
+                                                </div>
+                                        
+                                            </div>
+                                        </form>
+                                        
+                                        <!--end row-->
+                                    </div>
+                                    <div class="d-none code-view">
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end col-->
+                    </div>
+                    <!--end row-->
+
+                 
+                    <!--end row-->
+
+
+                </div> <!-- container-fluid -->
+            </div><!-- End Page-content -->
+
+            <app-footer></app-footer>
+        </div>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+   
+
+    <!-- Theme Settings -->
+   
+
+    <!-- JAVASCRIPT -->
+   
+
+</body>
+
+
+</html>

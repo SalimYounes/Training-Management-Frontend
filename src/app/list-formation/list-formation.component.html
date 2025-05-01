@@ -88,7 +88,7 @@
                                                 <td>{{ formation.formateur?.nom }} {{ formation.formateur?.prenom }}</td>
                                                 <td>
                                                     <div class="btn-container">
-                                                        <a [routerLink]="['/modifierformation', formation.id]" type="button" class="custom-btn success">Modifier</a>
+                                                        <a [routerLink]="['/updateFormation', formation.id]" type="button" class="custom-btn success">Modifier</a>
                                                         <button type="button" class="custom-btn danger" (click)="deleteFormation(formation)">Supprimer</button>
                                                     </div>
                                                 </td>
