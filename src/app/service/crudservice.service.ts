@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../Entité/User.module';
@@ -33,6 +33,32 @@ export class CrudserviceService {
     return token ? true : false;
   }
 
+  register(userData: any): Observable<any> {
+    // Valider l'email avant envoi
+    if (!this.validateEmail(userData.email)) {
+      return throwError(() => new Error('Email invalide'));
+    }
+  
+    const requestData = {
+      nom: userData.nom,
+      prenom: userData.prenom,
+      email: userData.email,
+      password: userData.password,
+      role: userData.role || 'SIMPLE' // Rôle par défaut
+    };
+  
+    return this.http.post(`${this.apiUrl}/auth/register`, requestData).pipe(
+      catchError(error => {
+        let errorMsg = 'Erreur lors de l\'inscription';
+        if (error.error?.message) {
+          errorMsg = error.error.message;
+        } else if (error.status === 400) {
+          errorMsg = 'Données invalides';
+        }
+        return throwError(() => new Error(errorMsg));
+      })
+    );
+  }
   
   
 
@@ -171,23 +197,36 @@ export class CrudserviceService {
   
   // Authentication
  
-  userDetails(): any {
+// Dans CrudserviceService
+userDetails(): any {
     const token: any = localStorage.getItem('myToken');
-    const decodeToken = this.helper.decodeToken(token);
+    if (!token) return null;
     
-    // Si le token contient les données utilisateur, les retourner
-    if (decodeToken?.data) {
-      return decodeToken.data;
+    try {
+      const decodeToken = this.helper.decodeToken(token);
+      console.log('Token expires at:', new Date(decodeToken.exp * 1000));
+      return {
+        id: decodeToken.sub,
+        username: decodeToken.username,
+        nom: decodeToken.nom,
+        email: decodeToken.email,
+        role: decodeToken.role
+      };
+    } catch (e) {
+      console.error('Error decoding token', e);
+      return null;
     }
-    
-    // Sinon, construire un objet avec les données du localStorage
-    return {
-      email: decodeToken?.sub, // L'email est souvent dans le 'sub' du JWT
-      nom: localStorage.getItem('nom'),
-      prenom: localStorage.getItem('prenom'),
-      id: decodeToken?.id // Si l'ID est disponible dans le token
-    };
   }
+
+isAdmin(): boolean {
+  const user = this.userDetails();
+  return user?.role === 'ADMIN';
+}
+
+isManager(): boolean {
+  const user = this.userDetails();
+  return user?.role === 'MANAGER';
+}
 
   
   logoutFromServer(): Observable<any> {
@@ -201,3 +240,7 @@ export class CrudserviceService {
     return regex.test(email);
   }
 }
+function throwError(arg0: () => Error): Observable<any> {
+  throw new Error('Function not implemented.');
+}
+

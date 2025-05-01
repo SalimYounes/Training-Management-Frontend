@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrudserviceService } from '../service/crudservice.service';
 import { NgToastService } from 'ng-angular-popup';
@@ -13,10 +13,10 @@ import { Role } from '../Entité/Role.module';
 })
 export class ProfilComponent implements OnInit {
   updateForm: FormGroup;
-  userDetails: any;
-  id: string;
+  currentUser: any;
   roleName: string = '';
-  
+  isLoading: boolean = true;
+
   constructor(
     private fb: FormBuilder,
     private service: CrudserviceService,
@@ -24,105 +24,120 @@ export class ProfilComponent implements OnInit {
     private route: ActivatedRoute,
     private toast: NgToastService
   ) {
-    this.userDetails = this.service.userDetails();
+    this.currentUser = this.service.userDetails();
+    this.initializeForm();
+  }
+
+  private initializeForm(): void {
     this.updateForm = this.fb.group({
-      nom: [this.userDetails?.nom || '', [
+      nom: [this.currentUser?.nom || '', [
         Validators.required,
         Validators.pattern("[a-z A-Z .'-]+"),
         Validators.minLength(4),
       ]],
-      prenom: [this.userDetails?.prenom || '', [Validators.required]],
-      email: [this.userDetails?.email || '', [
+      prenom: [this.currentUser?.prenom || '', [Validators.required]],
+      email: [this.currentUser?.email || '', [
         Validators.required,
         Validators.email,
         Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
       ]],
-      password: ['', [Validators.required]]
-      // Note: We don't include role in the form since it's usually not editable by users
+      password: ['', [
+        Validators.minLength(6),
+        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/)
+      ]]
     });
-    
-    // Initialize the role name
-    this.roleName = localStorage.getItem('roleName') || '';
   }
-  
+
   get nom() { return this.updateForm.get('nom'); }
-  get prenom() { return this.updateForm.get('prenom'); }
+  get prenom() { return this.updateForm.get('username'); }
   get email() { return this.updateForm.get('email'); }
   get password() { return this.updateForm.get('password'); }
-  
+
   ngOnInit(): void {
-    this.id = this.userDetails?.id;
-    if (this.id) {
-      this.service.findUserById(this.id).subscribe(
-        (user: User) => {
-          this.updateForm.patchValue({
-            nom: user.nom,
-            prenom: user.prenom,
-            email: user.email
-          });
-          
-          // Store the role name for display
-          this.roleName = user.role?.nom || '';
-        },
-        error => {
-          this.toast.error({
-            detail: 'Erreur',
-            summary: 'Impossible de récupérer les informations utilisateur.'
-          });
-        }
-      );
-    }
-  }
-  
-  updateProfile() {
-    if (this.updateForm.invalid) {
-      this.toast.info({
-        detail: 'Error Message',
-        summary: 'Veuillez remplir correctement les champs obligatoires',
-      });
+    if (!this.currentUser) {
+      this.router.navigate(['/login']);
       return;
     }
-    
-    const formData = this.updateForm.value;
-    // Create a Role object for the user
-    const userRole = this.userDetails?.role ? 
-      new Role(this.userDetails.role.id, this.userDetails.role.nom) : 
-      undefined;
-    
-    const user = new User(
-      this.id,
-      formData.nom,
-      formData.prenom,
-      formData.email,
-      formData.password,
-      userRole // Pass the existing role object
-    );
-    
-    this.service.updateUser(this.id, user).subscribe({
-      next: (res: any) => {
-        // Mettre à jour le token si un nouveau est retourné
-        if (res.token) {
-          localStorage.setItem('myToken', res.token);
-        }
-        // Mettre à jour les informations dans le localStorage
-        localStorage.setItem('nom', user.nom || '');
-        localStorage.setItem('prenom', user.prenom || '');
-        localStorage.setItem('email', user.email || '');
-        // Do not update roleName in localStorage as we're not changing it
-        
-        this.toast.success({
-          detail: 'Succès',
-          summary: 'Votre profil a été mis à jour avec succès',
+
+    this.loadUserDetails();
+  }
+
+  private loadUserDetails(): void {
+    this.service.findUserById(this.currentUser.id).subscribe({
+      next: (user: User) => {
+        this.currentUser = { ...this.currentUser, ...user };
+        this.roleName = this.currentUser.role || 'USER';
+        this.updateForm.patchValue({
+          nom: this.currentUser.nom,
+          prenom: this.currentUser.prenom,
+          email: this.currentUser.email
         });
-        this.router.navigate(['/profil']).then(() => {
-          window.location.reload();
-        });
+        this.isLoading = false;
       },
       error: (error) => {
         this.toast.error({
           detail: 'Erreur',
-          summary: error.status === 400 ? 'Données invalides' : 'Erreur serveur',
+          summary: 'Impossible de récupérer les informations utilisateur.'
         });
+        this.isLoading = false;
+      }
+    });
+  }
+
+  updateProfile(): void {
+    if (this.updateForm.invalid) {
+      this.markFormGroupTouched(this.updateForm);
+      this.toast.info({
+        detail: 'Message d\'erreur',
+        summary: 'Veuillez remplir correctement les champs obligatoires',
+        duration: 5000
+      });
+      return;
+    }
+
+    const formData = this.updateForm.value;
+    const user = new User(
+      this.currentUser.id,
+      formData.nom,
+      formData.username,
+      formData.email,
+      formData.password || undefined, // Only send password if it was changed
+      this.currentUser.role ? new Role(this.currentUser.role.id, this.currentUser.role.nom) : undefined
+    );
+
+    this.isLoading = true;
+    this.service.updateUser(this.currentUser.id, user).subscribe({
+      next: (res: any) => {
+        if (res.token) {
+          localStorage.setItem('myToken', res.token);
+        }
+        
+        this.toast.success({
+          detail: 'Succès',
+          summary: 'Profil mis à jour avec succès',
+          duration: 3000
+        });
+        
+        // Refresh user details
+        this.currentUser = this.service.userDetails();
+        this.isLoading = false;
+      },
+      error: (error) => {
+        this.toast.error({
+          detail: 'Erreur',
+          summary: error.error?.message || 'Erreur lors de la mise à jour',
+          duration: 5000
+        });
+        this.isLoading = false;
+      }
+    });
+  }
+
+  private markFormGroupTouched(formGroup: FormGroup): void {
+    Object.values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
       }
     });
   }

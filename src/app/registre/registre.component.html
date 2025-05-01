@@ -1,0 +1,117 @@
+<div class="auth-page-wrapper auth-bg-cover py-5 d-flex justify-content-center align-items-center min-vh-100">
+    <div class="bg-overlay"></div>
+    <div class="auth-page-content overflow-hidden pt-lg-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card overflow-hidden card-bg-fill" style="box-shadow: 0px 0px 10px rgba(0,0,0,0.3);">
+              <div class="row g-0">
+                <div class="col-lg-6">
+                  <div class="p-lg-5 p-4 auth-one-bg h-100" style="background-image: url('assets/images/foma.jpeg');">
+                    <div class="bg-overlay"></div>
+                    <div class="position-relative h-100 d-flex flex-column">
+                      <div class="mt-auto text-white">
+                        <p class="fs-15 fst-italic">"Créez un compte pour accéder à toutes les fonctionnalités de Training Center."</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-lg-6">
+                  <div class="p-lg-5 p-4">
+                    <div>
+                      <h5 class="text-primary">Créer un compte</h5>
+                      <p class="text-muted">Inscrivez-vous pour accéder à Training Center.</p>
+                    </div>
+  
+                    <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
+                      <!-- Nom -->
+                      <div class="mb-3">
+                        <label for="nom" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="nom" 
+                               formControlName="nom" 
+                               [ngClass]="{'is-invalid': registerForm.get('nom')?.invalid && registerForm.get('nom')?.touched}"
+                               placeholder="Votre nom">
+                        <div *ngIf="registerForm.get('nom')?.invalid && registerForm.get('nom')?.touched" class="invalid-feedback">
+                          <small *ngIf="registerForm.get('nom')?.errors?.['required']">Le nom est obligatoire</small>
+                        </div>
+                      </div>
+  
+                      <!-- Prénom -->
+                      <div class="mb-3">
+                        <label for="prenom" class="form-label">Prénom</label>
+                        <input type="text" class="form-control" id="prenom"
+                               formControlName="prenom"
+                               [ngClass]="{'is-invalid': registerForm.get('prenom')?.invalid && registerForm.get('prenom')?.touched}"
+                               placeholder="Votre prénom">
+                        <div *ngIf="registerForm.get('prenom')?.invalid && registerForm.get('prenom')?.touched" class="invalid-feedback">
+                          <small *ngIf="registerForm.get('prenom')?.errors?.['required']">Le prénom est obligatoire</small>
+                        </div>
+                      </div>
+  
+                      <!-- Email -->
+                      <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email"
+                               formControlName="email"
+                               [ngClass]="{'is-invalid': registerForm.get('email')?.invalid && registerForm.get('email')?.touched}"
+                               placeholder="exemple@domaine.com">
+                        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="invalid-feedback">
+                          <small *ngIf="registerForm.get('email')?.errors?.['required']">L'email est obligatoire</small>
+                          <small *ngIf="registerForm.get('email')?.errors?.['email']">Format d'email invalide</small>
+                        </div>
+                      </div>
+  
+                      <!-- Mot de passe -->
+                      <div class="mb-3">
+                        <label for="password" class="form-label">Mot de passe</label>
+                        <input type="password" class="form-control" id="password"
+                               formControlName="password"
+                               [ngClass]="{'is-invalid': registerForm.get('password')?.invalid && registerForm.get('password')?.touched}"
+                               placeholder="Minimum 6 caractères">
+                        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="invalid-feedback">
+                          <small *ngIf="registerForm.get('password')?.errors?.['required']">Le mot de passe est obligatoire</small>
+                          <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Minimum 6 caractères</small>
+                        </div>
+                      </div>
+  
+                      <!-- Rôle -->
+                      <div class="mb-3">
+                        <label for="role" class="form-label">Rôle</label>
+                        <select class="form-select" id="role"
+                                formControlName="role"
+                                [ngClass]="{'is-invalid': registerForm.get('role')?.invalid && registerForm.get('role')?.touched}">
+                          <option value="" disabled selected>Choisir un rôle</option>
+                          <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
+                        </select>
+                        <div *ngIf="registerForm.get('role')?.invalid && registerForm.get('role')?.touched" class="invalid-feedback">
+                          <small>Veuillez sélectionner un rôle</small>
+                        </div>
+                      </div>
+  
+                      <!-- Bouton Submit -->
+                      <button class="btn btn-success w-100" type="submit" [disabled]="registerForm.invalid || isLoading">
+                        <span *ngIf="!isLoading">Créer un compte</span>
+                        <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                      </button>
+  
+                      <!-- Message d'erreur général -->
+                      <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+                        {{ errorMessage }}
+                      </div>
+                    </form>
+  
+                    <div class="mt-3 text-center">
+                      <p class="mb-0">Déjà un compte ?
+                        <a [routerLink]="['/login']" class="fw-semibold text-primary text-decoration-underline">Connectez-vous</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

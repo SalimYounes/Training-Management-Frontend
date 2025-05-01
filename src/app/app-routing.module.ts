@@ -23,13 +23,14 @@ import { ListroleComponent } from './listrole/listrole.component';
 import { AuthComponent } from './auth/auth.component';
 import { ProfilComponent } from './profil/profil.component';
 import { AuthGuard } from './guards/auth.guards';
+import { RegistreComponent } from './registre/registre.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent,  canActivate: [AuthGuard] },
 
-  { path: 'adduser', component: AdduserComponent, canActivate: [AuthGuard] },
+  { path: 'adduser', component: AdduserComponent,  canActivate: [AuthGuard] },
   { path: 'listuser', component: ListuserComponent, canActivate: [AuthGuard] },
 
   { path: 'addemployeur', component: AddEmployeurComponent, canActivate: [AuthGuard] },
@@ -38,8 +39,8 @@ const routes: Routes = [
   { path: 'addformateur', component: AddFormateurComponent, canActivate: [AuthGuard] },
   { path: 'listformateur', component: ListFormateurComponent, canActivate: [AuthGuard] },
 
-  { path: 'addformation', component: AddFormationComponent, canActivate: [AuthGuard] },
-  { path: 'listformation', component: ListFormationComponent, canActivate: [AuthGuard] },
+  { path: 'addformation', component: AddFormationComponent,  canActivate: [AuthGuard] },
+  { path: 'listformation', component: ListFormationComponent,  canActivate: [AuthGuard] },
 
   { path: 'addparticipant', component: AddParticipantComponent, canActivate: [AuthGuard] },
   { path: 'listparticipant', component: ListParticipantComponent, canActivate: [AuthGuard] },
@@ -47,7 +48,7 @@ const routes: Routes = [
   { path: 'addstructure', component: AddStructureComponent, canActivate: [AuthGuard] },
   { path: 'liststructure', component: ListStructureComponent, canActivate: [AuthGuard] },
 
-  { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },
+  { path: 'profil', component: ProfilComponent,  canActivate: [AuthGuard] },
 
   { path: 'adddomaine', component: AddDomaineComponent, canActivate: [AuthGuard] },
   { path: 'listdomaine', component: ListDomaineComponent, canActivate: [AuthGuard] },
@@ -55,7 +56,9 @@ const routes: Routes = [
   { path: 'addrole', component: AddRoleComponent, canActivate: [AuthGuard] },
   { path: 'listrole', component: ListroleComponent, canActivate: [AuthGuard] },
 
-  { path: 'login', component: AuthComponent }, // 🛑 PAS de AuthGuard ici
+  { path: 'login', component: AuthComponent }, 
+  { path: 'register', component: RegistreComponent }, 
+
 ];
 
 @NgModule({

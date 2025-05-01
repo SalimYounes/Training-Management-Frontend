@@ -9,7 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from'@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from'@angular/common/http';
 import { NgToastComponent, NgToastModule } from 'ng-angular-popup';
 
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -36,6 +36,8 @@ import { AddProfilComponent } from './add-profil/add-profil.component';
 import { ListProfilComponent } from './list-profil/list-profil.component';
 import { AddFormateurComponent } from './add-formateur/add-formateur.component';
 import { AuthComponent } from './auth/auth.component';
+import { RegistreComponent } from './registre/registre.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,7 @@ import { AuthComponent } from './auth/auth.component';
     ListProfilComponent,
     AddFormateurComponent,
     AuthComponent,
+    RegistreComponent,
     
   ],
   imports: [
@@ -76,7 +79,14 @@ import { AuthComponent } from './auth/auth.component';
     NgxPaginationModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    
+  ],
   bootstrap: [AppComponent]
   
 })

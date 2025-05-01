@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CrudserviceService } from '../service/crudservice.service';
 import { NgToastService } from 'ng-angular-popup';
 import { User } from '../Entité/User.module';
-import { Role } from '../Entité/Role.module';
+import { Roles } from '../Entité/Roles.module';
 
 @Component({
   selector: 'app-adduser',
@@ -13,6 +13,13 @@ import { Role } from '../Entité/Role.module';
 })
 export class AdduserComponent implements OnInit {
   UserForm: FormGroup;
+
+  // Liste des rôles affichables dans le select
+  roles = [
+    { nom: 'ADMIN', value: Roles.ADMIN },
+    { nom: 'SIMPLE', value: Roles.SIMPLE },
+    { nom: 'MANAGER', value: Roles.MANAGER }
+  ];
 
   constructor(
     private service: CrudserviceService,
@@ -39,21 +46,9 @@ export class AdduserComponent implements OnInit {
   get password() { return this.UserForm.get('password'); }
   get role() { return this.UserForm.get('role'); }
 
-  
-
-  roles: Role[] = [];
-
-ngOnInit(): void {
-  this.service.getRoles().subscribe(
-    (res) => {
-      this.roles = res;
-    },
-    (err) => {
-      console.error("Erreur chargement des rôles :", err);
-    }
-  );
-}
-
+  ngOnInit(): void {
+    // plus besoin de charger les rôles depuis le backend
+  }
 
   addNewUser() {
     if (this.UserForm.invalid) {
@@ -76,12 +71,12 @@ ngOnInit(): void {
     }
 
     this.service.addUser(user).subscribe({
-      next: (res) => {
+      next: () => {
         this.toast.success({
           detail: 'Succès',
           summary: 'Utilisateur ajouté avec succès',
         });
-        this.router.navigate(['/listeuser']);
+        this.router.navigate(['/listuser']);
       },
       error: (err) => {
         if (err.status === 404) {

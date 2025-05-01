@@ -124,15 +124,15 @@
                                               <!-- Rôle -->
                                               <div class="col-xxl-8 col-md-6">
                                                 <select class="form-select" id="role" formControlName="role"
-                                                [ngClass]="{'invalid-input': UserForm.get('role').invalid && (UserForm.get('role').dirty || UserForm.get('role').touched)}">
-                                                <option value="" disabled selected>Choisir un rôle</option>
-                                                <option *ngFor="let r of roles" [ngValue]="r">{{ r.nom }}</option>
-                                              </select>
-                                              <div *ngIf="role?.touched && role?.invalid">
-                                                <small class="text-danger" *ngIf="role?.errors?.['required']">Le rôle est obligatoire</small>
+                                                        [ngClass]="{'invalid-input': role?.invalid && (role?.dirty || role?.touched)}">
+                                                  <option value="" disabled selected>Choisir un rôle</option>
+                                                  <option *ngFor="let r of roles" [value]="r.value">{{ r.nom }}</option>
+                                                </select>
+                                                <div *ngIf="role?.touched && role?.invalid">
+                                                  <small class="text-danger" *ngIf="role?.errors?.['required']">Le rôle est obligatoire</small>
+                                                </div>
                                               </div>
                                               
-                                              </div>
                                           
                                               <!-- Bouton -->
                                               <div class="col-12 d-flex justify-content-center">

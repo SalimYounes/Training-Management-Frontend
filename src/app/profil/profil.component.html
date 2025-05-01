@@ -62,7 +62,7 @@
                             <!--end col-->
                             <div class="col">
                                 <div class="p-2">
-                                    <h3 class="text-white mb-1 text-uppercase">{{this.userDetails.prenom}} {{this.userDetails.nom}} </h3>
+                                    <h3 class="text-white mb-1 text-uppercase">{{currentUser?.prenom}} {{currentUser?.nom}} </h3>
                                     <p class="text-white text-opacity-75 text-uppercase">{{roleName}}</p>
                                     
                                 </div>
@@ -89,7 +89,7 @@
                                        
                                     </ul>
                                     <div class="flex-shrink-0">
-                                        <a href="modifierprofil/{{userDetails.id}}" class="btn btn-success"><i class="ri-edit-box-line align-bottom"></i> Modifier Profile</a>
+                                        <a href="modifierprofil/{{currentUser?.id}}" class="btn btn-success"><i class="ri-edit-box-line align-bottom"></i> Modifier Profile</a>
                                     </div>
                                 </div>
                                 <!-- Tab panes -->
@@ -107,15 +107,15 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <th class="ps-0" scope="row"> Name:</th>
-                                                                        <td class="text-muted">{{this.userDetails.nom}}</td>
+                                                                        <td class="text-muted">{{currentUser?.nom}}</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th class="ps-0" scope="row">Prenom:</th>
-                                                                        <td class="text-muted">{{this.userDetails.prenom}}</td>
+                                                                        <td class="text-muted">{{currentUser?.username}}</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th class="ps-0" scope="row">E-mail:</th>
-                                                                        <td class="text-muted">{{this.userDetails.email}}</td>
+                                                                        <td class="text-muted">{{currentUser?.email}}</td>
                                                                     </tr>
                                                                    
                                                                    
@@ -140,10 +140,9 @@
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <h5 class="card-title mb-3">A Propos</h5>
-                                                        <p>Bonjour! Je suis {{this.userDetails.prenom}} {{this.userDetails.nom}}, l'administrateur du site web "SantéSynchro". Mon objectif est de rendre votre expérience sportive en ligne aussi fluide que possible</p>
-                                                        <p>"SantéSynchro" offre une plateforme simplifiée et conviviale pour tous les passionnés de sport,
-                                                            En tant qu'administrateur, je veille à ce que notre site soit constamment mis à jour avec les dernières informations et fonctionnalités pour répondre aux besoins de notre communauté grandissante de sportifs connectés.</p>
-                                                        <div class="row">
+                                                        <p>Bienvenue ! Je suis {{currentUser?.prenom}} {{currentUser?.nom}}, {{currentUser?.role}} de la plateforme de formation "FormaPlus".</p>                        
+                                                            <p>Notre mission est de centraliser les parcours de formation, faciliter l’accès aux contenus pédagogiques, et offrir une expérience optimale pour les formateurs et les participants.</p>                                                        
+                                                            <div class="row">
                                                             <div class="col-6 col-md-4">
                                                                 <div class="d-flex mt-4">
                                                                     <div class="flex-shrink-0 avatar-xs align-self-center me-3">
@@ -152,8 +151,8 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="flex-grow-1 overflow-hidden">
-                                                                        <p class="mb-1">Designation :</p>
-                                                                        <h6 class="text-truncate mb-0">Lead Developer / Developer</h6>
+                                                                        <p class="mb-1">Rôle :</p>
+                                                                        <h6 class="text-truncate mb-0">{{currentUser?.role}} de Formation</h6>                                                                    
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -166,8 +165,8 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="flex-grow-1 overflow-hidden">
-                                                                        <p class="mb-1">Website :</p>
-                                                                        <a href="#" class="fw-semibold">www.SantéSynchro.com</a>
+                                                                        <p class="mb-1">Plateforme :</p>
+                                                                        <a href="#" class="fw-semibold">www.formaplus.com</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -194,7 +193,7 @@
                                 </div>
                                 <!--end tab-content-->
                             </div>
-                        </div>
+                        </div>  
                         <!--end col-->
                     </div>
                     <!--end row-->
