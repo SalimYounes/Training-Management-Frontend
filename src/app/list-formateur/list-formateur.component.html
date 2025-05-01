@@ -74,7 +74,7 @@
                           <td>{{ formateur.employeur?.nomemployeur }}</td>
                           <td>
                             <div class="btn-container">
-                              <a [routerLink]="['/modifierformateur', formateur.id]" type="button" class="custom-btn success">Modifier</a>
+                              <a [routerLink]="['/updateFormateur', formateur.id]" type="button" class="custom-btn success">Modifier</a>
                               <button type="button" class="custom-btn danger" (click)="DeleteFormateur(formateur)">Supprimer</button>
                             </div>
                           </td>

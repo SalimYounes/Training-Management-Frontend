@@ -21,6 +21,13 @@ import { AddDomaineComponent } from './add-domaine/add-domaine.component';
 import { ListDomaineComponent } from './list-domaine/list-domaine.component';
 import { AddRoleComponent } from './add-role/add-role.component';
 import { ListroleComponent } from './listrole/listrole.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { UpdateStructureComponent } from './update-structure/update-structure.component';
+import { UpdateFormateurComponent } from './update-formateur/update-formateur.component';
+import { UpdateFormationComponent } from './update-formation/update-formation.component';
+import { UpdateParticipantComponent } from './update-participant/update-participant.component';
+import { UpdateDomaineComponent } from './update-domaine/update-domaine.component';
+import { UpdateRoleComponent } from './update-role/update-role.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },  // Redirige vers /home par défaut
@@ -29,6 +36,8 @@ const routes: Routes = [
   // Routes pour User
   { path: 'adduser', component: AdduserComponent },
   { path: 'listuser', component: ListuserComponent },
+  { path: 'updateuser/:id', component: UpdateUserComponent },
+
 
   // Routes pour Employeur
   { path: 'addemployeur', component: AddEmployeurComponent },
@@ -37,18 +46,22 @@ const routes: Routes = [
   // Routes pour Formateur
   { path: 'addformateur', component: AddFormateurComponent },
   { path: 'listformateur', component: ListFormateurComponent },
+  {path: 'updateFormateur/:id', component: UpdateFormateurComponent},
 
   // Routes pour Formation
   { path: 'addformation', component: AddFormationComponent },
   { path: 'listformation', component: ListFormationComponent },
+  {path:'updateFormation/:id',component:UpdateFormationComponent},
 
   // Routes pour Participant
   { path: 'addparticipant', component: AddParticipantComponent },
   { path: 'listparticipant', component: ListParticipantComponent },
+  {path: 'updateParticipant/:id', component: UpdateParticipantComponent},
 
   // Routes pour Structure
   { path: 'addstructure', component: AddStructureComponent },
   { path: 'liststructure', component: ListStructureComponent },
+  { path: 'updateStructure/:id', component: UpdateStructureComponent },
 
   // Routes pour Profil
   { path: 'addprofil', component: AddProfilComponent },
@@ -57,8 +70,9 @@ const routes: Routes = [
     // Routes pour Domaine
     { path: 'adddomaine', component: AddDomaineComponent },
     { path: 'listdomaine', component: ListDomaineComponent },
+    {path: 'updateDomaine/:id',component:UpdateDomaineComponent},
 
-       // Routes pour Domaine
+       // Routes pour role
        { path: 'addrole', component: AddRoleComponent },
        { path: 'listrole', component: ListroleComponent },
 ];

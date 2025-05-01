@@ -1,0 +1,156 @@
+/* Style for the input element with 3D effect */
+input {
+    padding: 12px; /* Adds padding inside the input */
+    border: 2px solid #ddd; /* Adds a border around the input */
+    border-radius: 8px; /* Rounds the corners of the input */
+    font-size: 18px; /* Sets the font size */
+    color: #333; /* Sets the text color */
+    background-color: #f9f9f9; /* Sets the background color */
+    transition: border-color 0.3s ease; /* Adds smooth transition for border color */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Adds shadow to give a 3D effect */
+  }
+  
+  /* Style for when the input is focused */
+  input:focus {
+    border-color: #007bff; /* Changes the border color when focused */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5), 0 2px 12px rgba(0, 0, 0, 0.1); /* Adds a stronger shadow when focused */
+    transform: translateY(-1px); /* Lifts the input element slightly on focus */
+  }
+  
+  /* Placeholder style */
+  input::placeholder {
+    color: #999; /* Sets the placeholder text color */
+  }
+  
+  /* Hover effect */
+  input:hover {
+    border-color: #999; /* Changes the border color on hover */
+  }
+  
+  /* Disabled style */
+  input:disabled {
+    opacity: 0.6; /* Reduces opacity for disabled input */
+    cursor: not-allowed; /* Changes cursor to not-allowed for disabled input */
+  }
+
+  /* Style for the input element with 3D effect */
+select {
+    padding: 12px; /* Adds padding inside the input */
+    border: 2px solid #ddd; /* Adds a border around the input */
+    border-radius: 8px; /* Rounds the corners of the input */
+    font-size: 18px; /* Sets the font size */
+    color: #333; /* Sets the text color */
+    background-color: #f9f9f9; /* Sets the background color */
+    transition: border-color 0.3s ease; /* Adds smooth transition for border color */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Adds shadow to give a 3D effect */
+  }
+  
+  /* Style for when the input is focused */
+  select:focus {
+    border-color: #007bff; /* Changes the border color when focused */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5), 0 2px 12px rgba(0, 0, 0, 0.1); /* Adds a stronger shadow when focused */
+    transform: translateY(-1px); /* Lifts the input element slightly on focus */
+  }
+  
+  /* Placeholder style */
+  select::placeholder {
+    color: #999; /* Sets the placeholder text color */
+  }
+  
+  /* Hover effect */
+  select:hover {
+    border-color: #999; /* Changes the border color on hover */
+  }
+  
+  /* Disabled style */
+  select:disabled {
+    opacity: 0.6; /* Reduces opacity for disabled input */
+    cursor: not-allowed; /* Changes cursor to not-allowed for disabled input */
+  }
+
+  /* Style for the button */
+button {
+    padding: 12px 20px; /* Adds padding inside the button */
+    border: none; /* Removes the border */
+    border-radius: 20px; /* Rounds the corners of the button */
+    font-size: 18px; /* Sets the font size */
+    color: #fff; /* Sets the text color */
+    background-color: #4CAF50; /* Sets the background color */
+    cursor: pointer; /* Changes cursor to pointer */
+    transition: background-color 0.3s ease; /* Adds smooth transition for background color */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Adds shadow to give a 3D effect */
+  }
+  
+  /* Hover effect */
+  button:hover {
+    background-color: #45a049; /* Changes the background color on hover */
+  }
+  
+  /* Active effect */
+  button:active {
+    background-color: #39803d; /* Changes the background color on click */
+    transform: translateY(1px); /* Pushes the button down slightly on click */
+  }
+  
+  /* Disabled style */
+  button:disabled {
+    opacity: 0.6; /* Reduces opacity for disabled button */
+    cursor: not-allowed; /* Changes cursor to not-allowed for disabled button */
+  }
+
+
+  .card {
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card-header {
+    background: linear-gradient(45deg,  #9400d3,#4b0082);
+    color: #fff;
+    padding: 16px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.08);
+  }
+  
+  
+  .pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+  }
+  
+  .pagination li {
+    margin: 0 5px;
+  }
+  
+  .pagination li a {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination li a:hover {
+    background-color: #f2f2f2;
+  }
+  
+
+  
+  .invalid-input {
+    border: 1px solid red;
+    border-radius: 5px; 
+    
+  }
+  
+  

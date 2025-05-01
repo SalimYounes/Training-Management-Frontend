@@ -105,7 +105,7 @@
                                                 <td>{{ user.role?.nom }}</td>
                                                 <td>
                                                   <div class="btn-container">
-                                                    <a [routerLink]="['/modifieruser', user.id]" type="button" class="custom-btn success">Modifier</a>
+                                                    <a [routerLink]="['/updateuser', user.id]" class="custom-btn success">Modifier</a>
                                                     <button type="button" class="custom-btn danger" (click)="Deleteuser(user)">Supprimer</button>
                                                   </div>
                                                 </td>

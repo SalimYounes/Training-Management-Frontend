@@ -94,7 +94,7 @@
                       <td>{{ domaine.libelle }}</td>
                       <td>
                         <div class="btn-container">
-                          <a [routerLink]="['/modifierdomaine', domaine.id]" type="button" class="custom-btn success">Modifier</a>
+                          <a [routerLink]="['/updateDomaine', domaine.id]" type="button" class="custom-btn success">Modifier</a>
                           <button type="button" class="custom-btn danger" (click)="DeleteDomaine(domaine)">Supprimer</button>
                         </div>
                       </td>
