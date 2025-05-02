@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
+
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>Basic Elements | Velzon - Admin & Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+
+
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+    <app-header></app-header>
+
+<!-- removeNotificationModal -->
+<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="NotificationModalbtn-close"></button>
+            </div>
+         
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+        <!-- ========== App Menu ========== -->
+       <app-menu></app-menu>
+        
+        <div class="vertical-overlay"></div>
+
+        
+        <div class="main-content">
+            <div class="page-content">
+              <div class="container-fluid">
+          
+                <!-- Titre de la page -->
+                <div class="row">
+                  <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
+                      <h4 class="mb-sm-0">Employeur</h4>
+          
+                      <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                          <li class="breadcrumb-item"><a routerLink="/listemployeur">Employeurs</a></li>
+                          <li class="breadcrumb-item active">Modifier Employeur</li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          
+                <!-- Formulaire -->
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-lg-8">
+                    <div class="card">
+                      <div class="card-header align-items-center d-flex" style="background-color: #6D81F2;">
+                        <h4 class="card-title mb-0 flex-grow-1" style="color: white;">
+                          Modifier Employeur
+                        </h4>
+                      </div>
+          
+                      <div class="card-body">
+                        <div class="live-preview">
+                          <form (ngSubmit)="updateEmployeur()" [formGroup]="updateForm">
+                            <div class="row gy-4 justify-content-center align-items-center">
+          
+                              <!-- Nom Employeur -->
+                              <div class="col-xxl-8 col-md-8">
+                                <div>
+                                  <label for="nomemployeur" class="form-label">Nom de l'employeur</label>
+                                  <input type="text" class="form-control" id="nomemployeur" placeholder="Nom de l'employeur"
+                                    formControlName="nomemployeur"
+                                    [ngClass]="{'invalid-input': nomemployeur?.invalid && (nomemployeur?.dirty || nomemployeur?.touched)}">
+                                  <div *ngIf="nomemployeur?.touched && nomemployeur?.invalid">
+                                    <small class="text-danger" *ngIf="nomemployeur?.errors?.['required']">Nom est obligatoire</small>
+                                    <small class="text-danger" *ngIf="nomemployeur?.errors?.['pattern']">Format invalide</small>
+                                    <small class="text-danger" *ngIf="nomemployeur?.errors?.['minlength']">Au moins 2 caractères</small>
+                                  </div>
+                                </div>
+                              </div>
+          
+                              <!-- Bouton -->
+                              <div class="col-12 d-flex justify-content-center">
+                                <button class="btn btn-primary" type="submit">Modifier</button>
+                              </div>
+          
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+          
+                    </div>
+                  </div>
+                </div>
+          
+              </div> <!-- container-fluid -->
+            </div> <!-- End Page-content -->
+            <app-footer></app-footer>
+          </div> <!-- End main content -->
+          
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+   
+
+    <!-- Theme Settings -->
+   
+
+    <!-- JAVASCRIPT -->
+   
+
+</body>
+
+
+</html>

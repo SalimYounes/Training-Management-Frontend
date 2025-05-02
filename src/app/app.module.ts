@@ -48,6 +48,8 @@ import { UpdateFormationComponent } from './update-formation/update-formation.co
 import { UpdateParticipantComponent } from './update-participant/update-participant.component';
 import { UpdateDomaineComponent } from './update-domaine/update-domaine.component';
 import { UpdateRoleComponent } from './update-role/update-role.component';
+import { UpdateEmployeurComponent } from './update-employeur/update-employeur.component';
+import { UpdateProfilComponent } from './update-profil/update-profil.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,6 +85,8 @@ import { UpdateRoleComponent } from './update-role/update-role.component';
     UpdateParticipantComponent,
     UpdateDomaineComponent,
     UpdateRoleComponent,
+    UpdateEmployeurComponent,
+    UpdateProfilComponent,
     
   ],
   imports: [

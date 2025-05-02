@@ -1,1 +1,85 @@
-<p>list-profil works!</p>
+<!doctype html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
+  <head>
+    <meta charset="utf-8" />
+    <title>Liste Formateurs | Velzon</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+    <div id="layout-wrapper">
+      <app-header></app-header>
+      <app-menu></app-menu>
+
+      <div class="vertical-overlay"></div>
+
+      <div class="main-content">
+        <div class="page-content">
+          <div class="container-fluid">
+    
+            <!-- Page Title -->
+            <div class="row">
+              <div class="col-12">
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
+                  <h4 class="mb-sm-0">Profils</h4>
+                  <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                      <li class="breadcrumb-item"><a routerLink="/home">Profils</a></li>
+                      <li class="breadcrumb-item active">Liste Profils</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <!-- Table -->
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="card-title mb-0">Liste Profils</h5>
+                  </div>
+                  <div class="card-body">
+                    <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                      <thead>
+                        <tr>
+                          <th style="width: 10px;">
+                            <div class="form-check">
+                              <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
+                            </div>
+                          </th>
+                          <th>ID</th>
+                          <th>Libellé</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let profil of listProfil | paginate: { itemsPerPage: 10, currentPage: p }">
+                          <td>
+                            <div class="form-check">
+                              <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                            </div>
+                          </td>
+                          <td>{{ profil.id }}</td>
+                          <td>{{ profil.libelle }}</td>
+                          <td>
+                            <div class="btn-container">
+                              <a [routerLink]="['/updateProfil', profil.id]" type="button" class="custom-btn success">Modifier</a>
+                              <button type="button" class="custom-btn danger" (click)="DeleteProfil(profil)">Supprimer</button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <pagination-controls style="text-align: right;" (pageChange)="p = $event"></pagination-controls>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

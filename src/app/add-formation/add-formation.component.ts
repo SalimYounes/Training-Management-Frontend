@@ -65,7 +65,7 @@ export class AddFormationComponent implements OnInit {
     this.service.addFormation(formation).subscribe({
       next: () => {
         this.toast.success({ detail: 'Succès', summary: 'Formation ajoutée avec succès' });
-        this.router.navigate(['/listeformation']);
+        this.router.navigate(['/listformation']);
       },
       error: (err) => {
         this.toast.error({ detail: 'Erreur', summary: 'Erreur lors de l\'ajout de la formation' });

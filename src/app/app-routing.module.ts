@@ -31,6 +31,10 @@ import { UpdateFormateurComponent } from './update-formateur/update-formateur.co
 import { UpdateFormationComponent } from './update-formation/update-formation.component';
 import { UpdateParticipantComponent } from './update-participant/update-participant.component';
 import { UpdateDomaineComponent } from './update-domaine/update-domaine.component';
+import { UpdateEmployeurComponent } from './update-employeur/update-employeur.component';
+import { AddProfilComponent } from './add-profil/add-profil.component';
+import { ListProfilComponent } from './list-profil/list-profil.component';
+import { UpdateProfilComponent } from './update-profil/update-profil.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -45,6 +49,7 @@ const routes: Routes = [
 
   { path: 'addemployeur', component: AddEmployeurComponent, canActivate: [AuthGuard] },
   { path: 'listemployeur', component: ListEmployeurComponent, canActivate: [AuthGuard] },
+  {path: 'updateEmployeur/:id',component: UpdateEmployeurComponent, canActivate:[AuthGuard]},
 
   { path: 'addformateur', component: AddFormateurComponent, canActivate: [AuthGuard] },
   { path: 'listformateur', component: ListFormateurComponent, canActivate: [AuthGuard] },
@@ -67,7 +72,9 @@ const routes: Routes = [
   { path: 'updateStructure/:id', component: UpdateStructureComponent ,canActivate: [AuthGuard]},
 
 
- 
+   {path: 'addprofil',component:AddProfilComponent, canActivate:[AuthGuard]},
+   {path: 'listprofil',component:ListProfilComponent, canActivate:[AuthGuard]},
+   {path: 'updateProfil/:id',component:UpdateProfilComponent,canActivate:[AuthGuard]},
 
 
 
@@ -77,6 +84,8 @@ const routes: Routes = [
   { path: 'adddomaine', component: AddDomaineComponent, canActivate: [AuthGuard] },
   { path: 'listdomaine', component: ListDomaineComponent, canActivate: [AuthGuard] },
   {path: 'updateDomaine/:id',component:UpdateDomaineComponent},
+
+  
 
 
   { path: 'addrole', component: AddRoleComponent, canActivate: [AuthGuard] },

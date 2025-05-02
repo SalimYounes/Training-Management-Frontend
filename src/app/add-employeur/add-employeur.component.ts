@@ -41,7 +41,7 @@ export class AddEmployeurComponent implements OnInit {
     this.service.addEmployeur(employeur).subscribe({
       next: () => {
         this.toast.success({ detail: 'Succès', summary: 'Employeur ajouté avec succès' });
-        this.router.navigate(['/listeemployeur']);
+        this.router.navigate(['/listemployeur']);
       },
       error: (err) => {
         this.toast.error({ detail: 'Erreur', summary: 'Erreur serveur ou employeur déjà existant' });

@@ -6,7 +6,7 @@
         <img src="assets/images/logo-sm.png" alt="" height="22">
       </span>
       <span class="logo-lg">
-        <img src="assets/images/logoo.png" alt="" style="width: 300px; height: 220px; margin-left: -35%; margin-top: -15%;">
+        <img src="assets/images/logoo.png" alt="" style="width: 270px; height: 220px; margin-left: -30%; margin-top: -15%;">
       </span>
     </a>
     <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
@@ -147,19 +147,40 @@
           </li>
            -->
 
-          <!-- Contact -->
-          <li class="nav-item" *ngIf="hasRole('ADMIN')">
-            <a class="nav-link menu-link collapsed" href="#sidebarContact" data-bs-toggle="collapse">
-              <i class="ri-contacts-line"></i> <span data-key="t-apps">Contact</span>
-            </a>
-            <div class="collapse menu-dropdown" id="sidebarContact">
-              <ul class="nav nav-sm flex-column">
-                <li class="nav-item">
-                  <a class="nav-link collapsed" routerLink="/listcontact">Liste Contacts</a>
-                </li>
-              </ul>
-            </div>
-          </li>
+          <!-- Employeur -->
+<li class="nav-item" *ngIf="hasRole('ADMIN')">
+  <a class="nav-link menu-link collapsed" href="#sidebarEmployeur" data-bs-toggle="collapse">
+    <i class="ri-briefcase-line"></i> <span data-key="t-apps">Employeur</span>
+  </a>
+  <div class="collapse menu-dropdown" id="sidebarEmployeur">
+    <ul class="nav nav-sm flex-column">
+      <li class="nav-item">
+        <a class="nav-link collapsed" routerLink="/addemployeur">Ajouter Employeur</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" routerLink="/listemployeur">Liste Employeurs</a>
+      </li>
+    </ul>
+  </div>
+</li>
+<!-- Profil -->
+<li class="nav-item" *ngIf="hasRole('ADMIN')">
+  <a class="nav-link menu-link collapsed" href="#sidebarProfil" data-bs-toggle="collapse">
+    <i class="ri-user-line" style="color: white;"></i> <span data-key="t-apps" style="color: white;">Profil</span>
+  </a>
+  <div class="collapse menu-dropdown" id="sidebarProfil">
+    <ul class="nav nav-sm flex-column">
+      <li class="nav-item">
+        <a class="nav-link collapsed" routerLink="/addprofil">Ajouter Profil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" routerLink="/listprofil">Liste Profils</a>
+      </li>
+    </ul>
+  </div>
+</li>
+
+
 
         </ul>
       </div>
