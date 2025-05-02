@@ -39,125 +39,136 @@
         <div class="vertical-overlay"></div>
 
         
-        <div class="main-content">
-
-            <div class="page-content">
-                <div class="container-fluid">
-
-                   
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
-                                <h4 class="mb-sm-0">Participant</h4>
-
-                                <div class="page-title-right">
-                                    <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);" routerLink="/home">Administrateur</a></li>
-                                        <li class="breadcrumb-item active">Ajouter Participant</li>
-                                    </ol>
-                                </div>
-
-                            </div>
+     <!-- add-participant.component.html -->
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
+                        <h4 class="mb-sm-0">Participant</h4>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);" routerLink="/home">Administrateur</a></li>
+                                <li class="breadcrumb-item active">Ajouter Participant</li>
+                            </ol>
                         </div>
                     </div>
-                    <!-- end page title -->
+                </div>
+            </div>
 
-                    <div class="row justify-content-center align-items-center"  >
-                     
-                        <div class="col-lg-9" >
-                            <div class="card ">
-                                <div class="card-header align-items-center d-flex" >
-                                    <h4 class="card-title mb-0 flex-grow-1">
-                                        Ajouter Participant
-                                    </h4>
-                                </div>
-                                 
-                                
-                                <!-- end card header -->
-                                <div class="card-body">
-                                    <div class="live-preview">
-                                        <form (ngSubmit)="addParticipant()" [formGroup]="participantForm">
-                                            <div class="row gy-4 justify-content-center align-items-center">
-                                          
-                                              <!-- Nom -->
-                                              <div class="col-md-6">
-                                                <label>Nom</label>
-                                                <input type="text" class="form-control" formControlName="nom">
-                                              </div>
-                                          
-                                              <!-- Prénom -->
-                                              <div class="col-md-6">
-                                                <label>Prénom</label>
-                                                <input type="text" class="form-control" formControlName="prenom">
-                                              </div>
-                                          
-                                              <!-- Email -->
-                                              <div class="col-md-6">
-                                                <label>Email</label>
-                                                <input type="email" class="form-control" formControlName="email">
-                                              </div>
-                                          
-                                              <!-- Téléphone -->
-                                              <div class="col-md-6">
-                                                <label>Téléphone</label>
-                                                <input type="text" class="form-control" formControlName="tel">
-                                              </div>
-                                          
-                                              <!-- Structure -->
-                                              <div class="col-md-6">
-                                                <label>Structure</label>
-                                                <select class="form-select" formControlName="structure">
-                                                  <option value="" disabled>Choisir une structure</option>
-                                                  <option *ngFor="let s of structures" [ngValue]="s">{{ s.libelle }}</option>
-                                                </select>
-                                              </div>
-                                          
-                                              <!-- Profil -->
-                                              <div class="col-md-6">
-                                                <label>Profil</label>
-                                                <select class="form-select" formControlName="profil">
-                                                  <option value="" disabled>Choisir un profil</option>
-                                                  <option *ngFor="let p of profils" [ngValue]="p">{{ p.libelle }}</option>
-                                                </select>
-                                              </div>
-                                          
-                                              <!-- Formations -->
-                                              <div class="col-md-12">
-                                                <label>Formations</label>
-                                                <select multiple class="form-select" formControlName="formations">
-                                                  <option *ngFor="let f of formations" [ngValue]="f">{{ f.titre }}</option>
-                                                </select>
-                                              </div>
-                                          
-                                              <!-- Bouton -->
-                                              <div class="col-12 d-flex justify-content-center">
-                                                <button class="btn btn-primary" type="submit" [disabled]="participantForm.invalid">Ajouter</button>
-                                              </div>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-9">
+                    <div class="card">
+                        <div class="card-header align-items-center d-flex">
+                            <h4 class="card-title mb-0 flex-grow-1">
+                                Ajouter Participant
+                            </h4>
+                        </div>
+                        
+                        <div class="card-body">
+                            <div class="live-preview">
+                                <form (ngSubmit)="addParticipant()" [formGroup]="participantForm">
+                                    <div class="row gy-4 justify-content-center align-items-center">
+                                        
+                                        <!-- Nom -->
+                                        <div class="col-md-6">
+                                            <label>Nom</label>
+                                            <input type="text" class="form-control" formControlName="nom">
+                                            <div *ngIf="participantForm.get('nom')?.invalid && participantForm.get('nom')?.touched" class="text-danger">
+                                                Veuillez saisir un nom
                                             </div>
-                                          </form>
-                                          
-                                          
-                                        <!--end row-->
+                                        </div>
+                                        
+                                        <!-- Prénom -->
+                                        <div class="col-md-6">
+                                            <label>Prénom</label>
+                                            <input type="text" class="form-control" formControlName="prenom">
+                                            <div *ngIf="participantForm.get('prenom')?.invalid && participantForm.get('prenom')?.touched" class="text-danger">
+                                                Veuillez saisir un prénom
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Email -->
+                                        <div class="col-md-6">
+                                            <label>Email</label>
+                                            <input type="email" class="form-control" formControlName="email">
+                                            <div *ngIf="participantForm.get('email')?.invalid && participantForm.get('email')?.touched" class="text-danger">
+                                                Veuillez saisir une adresse email valide
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Téléphone -->
+                                        <div class="col-md-6">
+                                            <label>Téléphone</label>
+                                            <input type="text" class="form-control" formControlName="tel">
+                                            <div *ngIf="participantForm.get('tel')?.invalid && participantForm.get('tel')?.touched" class="text-danger">
+                                                Veuillez saisir un numéro de téléphone
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Structure -->
+                                        <div class="col-md-6">
+                                            <label>Structure</label>
+                                            <select class="form-select" formControlName="structure">
+                                                <option value="" disabled selected>Choisir une structure</option>
+                                                <option *ngFor="let s of structures" [value]="s.id">{{ s.libelle }}</option>
+                                            </select>
+                                            <div *ngIf="participantForm.get('structure')?.invalid && participantForm.get('structure')?.touched" class="text-danger">
+                                                Veuillez sélectionner une structure
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Profil -->
+                                        <div class="col-md-6">
+                                            <label>Profil</label>
+                                            <select class="form-select" formControlName="profil">
+                                                <option value="" disabled selected>Choisir un profil</option>
+                                                <option *ngFor="let p of profils" [value]="p.id">{{ p.libelle }}</option>
+                                            </select>
+                                            <div *ngIf="participantForm.get('profil')?.invalid && participantForm.get('profil')?.touched" class="text-danger">
+                                                Veuillez sélectionner un profil
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Formations avec checkboxes -->
+                                        <div class="col-md-12">
+                                            <label>Formations</label>
+                                            <div class="card">
+                                                <div class="card-body p-3" style="max-height: 200px; overflow-y: auto;">
+                                                    <div formArrayName="formationSelections">
+                                                        <div class="form-check" *ngFor="let formation of formations; let i = index">
+                                                            <input 
+                                                                class="form-check-input" 
+                                                                type="checkbox" 
+                                                                [id]="'formation-' + i"
+                                                                [formControlName]="i">
+                                                            <label class="form-check-label" [for]="'formation-' + i">
+                                                                {{ formation.titre }}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="!isFormationSelected && participantForm.get('formationSelections')?.touched" class="text-danger">
+                                                Veuillez sélectionner au moins une formation
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Bouton -->
+                                        <div class="col-12 d-flex justify-content-center">
+                                            <button class="btn btn-primary" type="submit" [disabled]="participantForm.invalid || !isFormationSelected">Ajouter</button>
+                                        </div>
                                     </div>
-                                    <div class="d-none code-view">
-                                       
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
-                        <!--end col-->
                     </div>
-                    <!--end row-->
-
-                 
-                    <!--end row-->
-
-
-                </div> <!-- container-fluid -->
-            </div><!-- End Page-content -->
-
-            <app-footer></app-footer>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
         <!-- end main content-->
 
     </div>

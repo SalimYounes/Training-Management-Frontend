@@ -68,10 +68,10 @@
             </a>
             <div class="collapse menu-dropdown" id="sidebarCoachs">
               <ul class="nav nav-sm flex-column">
-                <li class="nav-item" *ngIf="hasRole('ADMIN')">
+                <li class="nav-item" >
                   <a class="nav-link collapsed" routerLink="/addformateur">Ajouter Formateurs</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" >
                   <a class="nav-link collapsed" routerLink="/listformateur">Liste Formateurs</a>
                 </li>
               </ul>
@@ -85,7 +85,7 @@
             </a>
             <div class="collapse menu-dropdown" id="sidebarSalle">
               <ul class="nav nav-sm flex-column">
-                <li class="nav-item" *ngIf="hasRole('ADMIN')">
+                <li class="nav-item" >
                   <a class="nav-link collapsed" routerLink="/addformation">Ajouter Formation</a>
                 </li>
                 <li class="nav-item">

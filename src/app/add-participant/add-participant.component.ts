@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { CrudserviceService } from '../service/crudservice.service';
 import { NgToastService } from 'ng-angular-popup';
 import { Router } from '@angular/router';
@@ -34,44 +34,81 @@ export class AddParticipantComponent implements OnInit {
       tel: ['', Validators.required],
       structure: ['', Validators.required],
       profil: ['', Validators.required],
-      formations: [[], Validators.required] // tableau de sélection
+      formationSelections: this.fb.array([], Validators.required)
     });
-
+    
     this.loadRelations();
   }
 
   loadRelations() {
     this.service.getStructures().subscribe(res => this.structures = res);
     this.service.getProfils().subscribe(res => this.profils = res);
-    this.service.getFormations().subscribe(res => this.formations = res);
+    this.service.getFormations().subscribe(res => {
+      this.formations = res;
+      // Initialiser les checkboxes avec des valeurs false
+      this.initFormationCheckboxes();
+    });
+  }
+
+  // Initialise les checkboxes pour chaque formation
+  initFormationCheckboxes() {
+    const checkArray = this.participantForm.get('formationSelections') as FormArray;
+    this.formations.forEach(() => {
+      checkArray.push(new FormControl(false));
+    });
+  }
+
+  // Vérifie si au moins une formation est sélectionnée
+  get isFormationSelected() {
+    const formationArray = this.participantForm.get('formationSelections') as FormArray;
+    return formationArray.controls.some(control => control.value === true);
   }
 
   addParticipant() {
-    if (this.participantForm.invalid) {
-      this.toast.warning({ detail: 'Erreur', summary: 'Veuillez remplir tous les champs' });
+    if (this.participantForm.invalid || !this.isFormationSelected) {
+      this.toast.warning({ detail: 'Erreur', summary: 'Veuillez remplir tous les champs et sélectionner au moins une formation' });
       return;
     }
 
     const data = this.participantForm.value;
-    const participant = new Participant(
-      undefined,
-      data.nom,
-      data.prenom,
-      data.email,
-      data.tel,
-      data.structure,
-      data.profil,
-      data.formations
-    );
+    
+    // Récupérer les IDs des formations sélectionnées
+    const selectedFormationIds = this.getSelectedFormationIds();
+    
+    // Préparation des données selon le format attendu par l'API
+    const participant = {
+      nom: data.nom,
+      prenom: data.prenom,
+      email: data.email,
+      tel: data.tel,
+      structureId: data.structure, // ID de structure
+      profilId: data.profil, // ID de profil
+      formationIds: selectedFormationIds // Liste des IDs de formation sélectionnés
+    };
 
     this.service.addParticipant(participant).subscribe({
       next: () => {
         this.toast.success({ detail: 'Succès', summary: 'Participant ajouté' });
         this.router.navigate(['/listeparticipant']);
       },
-      error: () => {
+      error: (err) => {
+        console.error('Erreur lors de l\'ajout du participant:', err);
         this.toast.error({ detail: 'Erreur', summary: 'Échec lors de l\'ajout' });
       }
     });
+  }
+
+  // Méthode pour récupérer les IDs des formations sélectionnées
+  getSelectedFormationIds(): string[] {
+    const selectedIds: string[] = [];
+    const formationSelections = this.participantForm.get('formationSelections') as FormArray;
+    
+    formationSelections.controls.forEach((control, index) => {
+      if (control.value) {
+        selectedIds.push(this.formations[index].id);
+      }
+    });
+    
+    return selectedIds;
   }
 }

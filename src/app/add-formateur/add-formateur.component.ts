@@ -76,7 +76,7 @@ export class AddFormateurComponent implements OnInit {
     this.service.addFormateur(formateur).subscribe({
       next: () => {
         this.toast.success({ detail: 'Succès', summary: 'Formateur ajouté avec succès' });
-        this.router.navigate(['/listeformateur']);
+        this.router.navigate(['/listformateur']);
       },
       error: (err) => {
         this.toast.error({ detail: 'Erreur', summary: 'Erreur lors de l\'ajout du formateur' });
