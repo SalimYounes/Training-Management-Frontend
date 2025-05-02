@@ -41,7 +41,7 @@ export class AddDomaineComponent implements OnInit {
     this.service.addDomaine(domaine).subscribe({
       next: () => {
         this.toast.success({ detail: 'Succès', summary: 'Domaine ajouté avec succès' });
-        this.router.navigate(['/listedomaine']);
+        this.router.navigate(['/listdomaine']);
       },
       error: (err) => {
         this.toast.error({ detail: 'Erreur', summary: 'Erreur serveur ou libellé existant' });

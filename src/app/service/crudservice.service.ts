@@ -118,6 +118,15 @@ export class CrudserviceService {
     return this.http.get<Employeur[]>(`${this.apiUrl}/employeurs`);
   }
 
+  findEmployeurById(id: string): Observable<Employeur> {
+    return this.http.get<Employeur>(`${this.apiUrl}/employeurs/${id}`);
+  }
+  
+  updateEmployeur(id: string, employeur: Employeur): Observable<any> {
+    return this.http.put(`${this.apiUrl}/employeurs/${id}`, employeur);
+  }
+  
+
   // Formateur
   addFormateur(formateur: Formateur): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/formateurs`, formateur);
@@ -220,6 +229,16 @@ export class CrudserviceService {
     return this.http.get<Profil[]>(`${this.apiUrl}/profils`);
   }
 
+  findProfilById(id: string): Observable<Profil> {
+  return this.http.get<Profil>(`${this.apiUrl}/profils/${id}`);
+  }
+
+
+  updateProfil(id: string, profil: Profil): Observable<any> {
+  return this.http.put(`${this.apiUrl}/profils/${id}`, profil);
+  }
+
+
    // Domaine
    addDomaine(domaine: Domaine): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/domaines`, domaine);
@@ -244,7 +263,6 @@ export class CrudserviceService {
   
   // Authentication
  
-// Dans CrudserviceService
 userDetails(): any {
     const token: any = localStorage.getItem('myToken');
     if (!token) return null;

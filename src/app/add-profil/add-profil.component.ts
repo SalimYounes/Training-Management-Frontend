@@ -41,7 +41,7 @@ export class AddProfilComponent implements OnInit {
     this.service.addProfil(profil).subscribe({
       next: () => {
         this.toast.success({ detail: 'Succès', summary: 'Profil ajouté avec succès' });
-        this.router.navigate(['/listeprofil']);
+        this.router.navigate(['/listprofil']);
       },
       error: (err) => {
         this.toast.error({ detail: 'Erreur', summary: 'Erreur serveur ou profil déjà existant' });

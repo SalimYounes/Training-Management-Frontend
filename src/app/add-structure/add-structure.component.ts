@@ -37,7 +37,7 @@ export class AddStructureComponent implements OnInit {
     this.service.addStructure(structure).subscribe({
       next: () => {
         this.toast.success({ detail: 'Succès', summary: 'Structure ajoutée avec succès' });
-        this.router.navigate(['/listestructure']);
+        this.router.navigate(['/liststructure']);
       },
       error: () => {
         this.toast.error({ detail: 'Erreur', summary: 'Échec de l\'ajout' });
