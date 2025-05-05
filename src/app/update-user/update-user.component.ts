@@ -4,7 +4,6 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router';
 import { CrudserviceService } from '../service/crudservice.service';
 import { NgToastService } from 'ng-angular-popup';
-import { Role } from '../Entité/Role.module';
 import { Roles } from '../Entité/Roles.module';
 
 @Component({

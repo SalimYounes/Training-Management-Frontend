@@ -1,4 +1,4 @@
-import { Role } from "./Role.module";
+import { Roles } from "./Roles.module";
 
 export class User {
     constructor(
@@ -7,6 +7,6 @@ export class User {
       public prenom?: string,
       public email?: string,
       public password?: string,
-      public role?: Role 
+      public role?: Roles
     ) {}
   }

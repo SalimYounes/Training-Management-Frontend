@@ -17,8 +17,7 @@ import { ListStructureComponent } from './list-structure/list-structure.componen
 
 import { AddDomaineComponent } from './add-domaine/add-domaine.component';
 import { ListDomaineComponent } from './list-domaine/list-domaine.component';
-import { AddRoleComponent } from './add-role/add-role.component';
-import { ListroleComponent } from './listrole/listrole.component';
+
 
 import { AuthComponent } from './auth/auth.component';
 import { ProfilComponent } from './profil/profil.component';
@@ -88,8 +87,7 @@ const routes: Routes = [
   
 
 
-  { path: 'addrole', component: AddRoleComponent, canActivate: [AuthGuard] },
-  { path: 'listrole', component: ListroleComponent, canActivate: [AuthGuard] },
+
 
   { path: 'login', component: AuthComponent }, 
   { path: 'register', component: RegistreComponent }, 

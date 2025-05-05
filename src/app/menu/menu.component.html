@@ -68,7 +68,7 @@
             </a>
             <div class="collapse menu-dropdown" id="sidebarCoachs">
               <ul class="nav nav-sm flex-column">
-                <li class="nav-item" >
+                <li class="nav-item" *ngIf="hasRole('ADMIN')">
                   <a class="nav-link collapsed" routerLink="/addformateur">Ajouter Formateurs</a>
                 </li>
                 <li class="nav-item" >
@@ -94,9 +94,9 @@
               </ul>
             </div>
           </li>
-
+          
           <!-- Participant -->
-          <li class="nav-item" *ngIf="hasRole('ADMIN')">
+          <li class="nav-item" *ngIf="hasRole('ADMIN') ||  isSimpleUser() ">
             <a class="nav-link menu-link collapsed" href="#sidebarAbonnement" data-bs-toggle="collapse">
               <i class="ri-user-add-line"></i> <span data-key="t-apps">Participant</span>
             </a>

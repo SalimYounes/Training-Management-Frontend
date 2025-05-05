@@ -27,7 +27,7 @@ export class AddFormateurComponent implements OnInit {
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      tel: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]], // Validation pour un numéro de téléphone à 10 chiffres
+      tel: ['', [Validators.required, Validators.pattern('^[0-9]{8,15}$')]], // Ajout d'un validateur de format
       type: ['', Validators.required],
       employeur: ['', Validators.required],
       user: ['', Validators.required]
@@ -48,7 +48,7 @@ export class AddFormateurComponent implements OnInit {
       (res) => this.employeurs = res,
       (err) => console.error('Erreur chargement des employeurs', err)
     );
-
+    
     this.service.getUser().subscribe(
       (res) => this.users = res,
       (err) => console.error('Erreur chargement des utilisateurs', err)
@@ -62,26 +62,27 @@ export class AddFormateurComponent implements OnInit {
     }
 
     const formData = this.formateurForm.value;
-    const formateur = new Formateur(
-      undefined,
-      formData.nom,
-      formData.prenom,
-      formData.email,
-      formData.tel,
-      formData.type,
-      formData.employeur,
-      formData.user
-    );
+    
+    // Création d'un objet qui correspond exactement à ce qu'attend le backend
+    const formateurData = {
+      nom: formData.nom,
+      prenom: formData.prenom,
+      email: formData.email,
+      tel: formData.tel, // Envoyé comme string
+      type: formData.type,
+      employeurId: formData.employeur.id, // Envoyer juste l'ID au lieu de l'objet entier
+      userId: formData.user.id // Envoyer juste l'ID au lieu de l'objet entier
+    };
 
-    this.service.addFormateur(formateur).subscribe({
+    this.service.addFormateur(formateurData).subscribe({
       next: () => {
         this.toast.success({ detail: 'Succès', summary: 'Formateur ajouté avec succès' });
         this.router.navigate(['/listformateur']);
       },
       error: (err) => {
-        this.toast.error({ detail: 'Erreur', summary: 'Erreur lors de l\'ajout du formateur' });
-        console.error(err);
+        this.toast.error({ detail: 'Erreur', summary: 'Erreur lors de l\'ajout du formateur: ' + (err.error?.message || err.statusText) });
+        console.error('Erreur détaillée:', err);
       }
     });
   }
-}
+} 

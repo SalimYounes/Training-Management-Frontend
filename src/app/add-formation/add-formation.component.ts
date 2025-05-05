@@ -33,12 +33,19 @@ export class AddFormationComponent implements OnInit {
     });
   }
 
+  get titre() { return this.formationForm.get('titre'); }
+  get annee() { return this.formationForm.get('annee'); }
+  get duree() { return this.formationForm.get('duree'); }
+  get budget() { return this.formationForm.get('budget'); }
+  get domaine() { return this.formationForm.get('domaine'); }
+  get formateur() { return this.formationForm.get('formateur'); }
+
   ngOnInit(): void {
     this.service.getDomaines().subscribe({
       next: (res) => this.domaines = res,
       error: (err) => console.error('Erreur chargement des domaines', err)
     });
-
+    
     this.service.getFormateurs().subscribe({
       next: (res) => this.formateurs = res,
       error: (err) => console.error('Erreur chargement des formateurs', err)
@@ -52,24 +59,28 @@ export class AddFormationComponent implements OnInit {
     }
 
     const formData = this.formationForm.value;
-    const formation = new Formation(
-      undefined,
-      formData.titre,
-      formData.annee,
-      formData.duree,
-      formData.budget,
-      formData.domaine,
-      formData.formateur
-    );
+    
+    // Création d'un objet qui correspond exactement à ce qu'attend le backend
+    const formationData = {
+      titre: formData.titre,
+      annee: formData.annee,
+      duree: formData.duree,
+      budget: formData.budget,
+      domaineId: formData.domaine.id, // Envoyer juste l'ID au lieu de l'objet entier
+      formateurId: formData.formateur.id // Envoyer juste l'ID au lieu de l'objet entier
+    };
 
-    this.service.addFormation(formation).subscribe({
+    this.service.addFormation(formationData).subscribe({
       next: () => {
         this.toast.success({ detail: 'Succès', summary: 'Formation ajoutée avec succès' });
         this.router.navigate(['/listformation']);
       },
       error: (err) => {
-        this.toast.error({ detail: 'Erreur', summary: 'Erreur lors de l\'ajout de la formation' });
-        console.error(err);
+        this.toast.error({ 
+          detail: 'Erreur', 
+          summary: 'Erreur lors de l\'ajout de la formation: ' + (err.error?.message || err.statusText)
+        });
+        console.error('Erreur détaillée:', err);
       }
     });
   }

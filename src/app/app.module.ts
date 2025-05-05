@@ -19,8 +19,6 @@ import { AdduserComponent } from './adduser/adduser.component';
 import { ListuserComponent } from './listuser/listuser.component';
 
 import { ProfilComponent } from './profil/profil.component';
-import { ListroleComponent } from './listrole/listrole.component';
-import { AddRoleComponent } from './add-role/add-role.component';
 import { ListDomaineComponent } from './list-domaine/list-domaine.component';
 import { AddDomaineComponent } from './add-domaine/add-domaine.component';
 import { AddFormationComponent } from './add-formation/add-formation.component';
@@ -47,7 +45,6 @@ import { UpdateFormateurComponent } from './update-formateur/update-formateur.co
 import { UpdateFormationComponent } from './update-formation/update-formation.component';
 import { UpdateParticipantComponent } from './update-participant/update-participant.component';
 import { UpdateDomaineComponent } from './update-domaine/update-domaine.component';
-import { UpdateRoleComponent } from './update-role/update-role.component';
 import { UpdateEmployeurComponent } from './update-employeur/update-employeur.component';
 import { UpdateProfilComponent } from './update-profil/update-profil.component';
 @NgModule({
@@ -60,8 +57,6 @@ import { UpdateProfilComponent } from './update-profil/update-profil.component';
     AdduserComponent,
     ListuserComponent,
     ProfilComponent,
-    ListroleComponent,
-    AddRoleComponent,
     ListDomaineComponent,
     AddDomaineComponent,
     AddFormationComponent,
@@ -84,7 +79,6 @@ import { UpdateProfilComponent } from './update-profil/update-profil.component';
     UpdateFormationComponent,
     UpdateParticipantComponent,
     UpdateDomaineComponent,
-    UpdateRoleComponent,
     UpdateEmployeurComponent,
     UpdateProfilComponent,
     

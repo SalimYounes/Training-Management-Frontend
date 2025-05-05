@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CrudserviceService } from '../service/crudservice.service';
 import { NgToastService } from 'ng-angular-popup';
 import { User } from '../Entité/User.module';
-import { Role } from '../Entité/Role.module';
+import { Roles } from '../Entité/Roles.module'; 
 
 @Component({
   selector: 'app-profile',
@@ -49,7 +49,7 @@ export class ProfilComponent implements OnInit {
   }
 
   get nom() { return this.updateForm.get('nom'); }
-  get prenom() { return this.updateForm.get('username'); }
+  get prenom() { return this.updateForm.get('prenom'); } // ✅ correction ici (username -> prenom)
   get email() { return this.updateForm.get('email'); }
   get password() { return this.updateForm.get('password'); }
 
@@ -66,7 +66,7 @@ export class ProfilComponent implements OnInit {
     this.service.findUserById(this.currentUser.id).subscribe({
       next: (user: User) => {
         this.currentUser = { ...this.currentUser, ...user };
-        this.roleName = this.currentUser.role || 'USER';
+        this.roleName = this.currentUser.role || Roles.SIMPLE; // ✅ rôle en texte, default = SIMPLE
         this.updateForm.patchValue({
           nom: this.currentUser.nom,
           prenom: this.currentUser.prenom,
@@ -96,13 +96,14 @@ export class ProfilComponent implements OnInit {
     }
 
     const formData = this.updateForm.value;
+
     const user = new User(
       this.currentUser.id,
       formData.nom,
-      formData.username,
+      formData.prenom,
       formData.email,
-      formData.password || undefined, // Only send password if it was changed
-      this.currentUser.role ? new Role(this.currentUser.role.id, this.currentUser.role.nom) : undefined
+      formData.password || undefined, // ✅ Ne pas envoyer le password si non modifié
+      this.currentUser.role // ✅ ici c’est une string de type Roles
     );
 
     this.isLoading = true;
@@ -111,14 +112,13 @@ export class ProfilComponent implements OnInit {
         if (res.token) {
           localStorage.setItem('myToken', res.token);
         }
-        
+
         this.toast.success({
           detail: 'Succès',
           summary: 'Profil mis à jour avec succès',
           duration: 3000
         });
-        
-        // Refresh user details
+
         this.currentUser = this.service.userDetails();
         this.isLoading = false;
       },

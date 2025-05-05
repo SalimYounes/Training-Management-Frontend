@@ -4,7 +4,6 @@ import { catchError, Observable } from 'rxjs';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../Entité/User.module';
-import { Role } from '../Entité/Role.module';
 import { Employeur } from '../Entité/Employeur.module';
 import { Formateur } from '../Entité/Formateur.module';
 import { Formation } from '../Entité/Formation.module';
@@ -86,23 +85,7 @@ export class CrudserviceService {
     return this.http.put<any>(url, user);
   }
 
-  // Role
-  addRole(role: Role) {
-    return this.http.post(`${this.apiUrl}/roles`, role);
-  }
-  
-
-  getRoles(): Observable<Role[]> {
-    return this.http.get<Role[]>(`${this.apiUrl}/roles`);
-  }
-
-  onDeleteRole(id: string): Observable<any> {
-    const url = `${this.apiUrl}/roles/${id}`;
-    return this.http.delete(url);
-  }
-
-
-
+ 
 
   // Employeur
   addEmployeur(employeur: Employeur): Observable<any> {

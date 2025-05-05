@@ -7,7 +7,7 @@ export class Formateur {
         public nom?: string,
         public prenom?: string,
         public email?: string,
-        public tel?: number,
+        public tel?: string,
         public type?: string,
         public employeur?: Employeur,
         public user?: User
